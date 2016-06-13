@@ -1,14 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>UpdateMailer</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UpdateMailer</title>
 
-<%= yield %>
+    <!-- Main css styles -->
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+
+    <!-- Main javascript files -->
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= favicon_link_tag 'favicon.ico' %>
+    <%= csrf_meta_tags %>
+
+</head>
+<body class="md-skin fixed-sidebar">
+
+    <!-- Wrapper-->
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <%= render 'layouts/navigation' %>
+
+
+        <!-- Page wraper -->
+        <div id="page-wrapper" class="gray-bg">
+
+          <!-- Page wrapper -->
+          <%= render 'layouts/topnavbar' %>
+
+          <div id="flash_messages"><%= flash_messages %></div>
+          <!-- Main view  -->
+            <%= yield %>
+
+            <!-- Footer -->
+        </div>
+        <!-- End page wrapper-->
+
+    </div>
+    <!-- End wrapper-->
 
 </body>
 </html>
+<script>
+    setTimeout("$('.alert').fadeOut('slow')", 2500)
+</script>
