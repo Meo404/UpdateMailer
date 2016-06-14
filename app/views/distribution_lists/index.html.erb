@@ -1,2 +1,26 @@
-<h1>DistributionLists#index</h1>
-<p>Find me in app/views/distribution_lists/index.html.erb</p>
+<div class="row" style="margin-top: 20px">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins main-box">
+            <div class="ibox-title">
+                <h5>Distribution Lists</h5>
+
+                <div class="ibox-tools">
+                    <%= link_to({:controller => 'distribution_lists', :action => 'new'},
+                                {:class => 'btn btn-sm btn-primary pull-right', :style => 'color: white'}, {}) do %>
+                        <i class="fa fa-plus" style="margin-right: 5px"></i><span style="">New List</span>
+                    <% end %>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="table-responsive">
+                    <div class="col-sm-4" style="padding-left: 0;">
+                        <%= text_field_tag :search, params[:search], :class => "form-control input-sm pull-left search-field", :placeholder => "Search for name or emails" %>
+                    </div>
+                    <div id="ajax-table">
+                        <%= render 'distribution_lists' %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

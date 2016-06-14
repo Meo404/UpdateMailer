@@ -1,0 +1,17 @@
+<tr>
+    <td><%= distribution_list.id %></td>
+    <td><%= distribution_list.name %></td>
+    <td>
+        <%  distribution_list.emails.each do |email| %>
+            <%= email.address %><br>
+        <% end %>
+    </td>
+    <td>
+        <%= link_to({:controller => 'distribution_lists', :action => 'edit', :id => distribution_list.id}, {:class => 'btn btn-xs btn-primary'}, {}) do %>
+            <i class="fa fa-edit"></i>
+        <% end %>
+        <%= link_to({:controller => 'distribution_lists', :action => 'destroy', :id => distribution_list.id}, {:class => 'btn btn-xs btn-danger', :method => :delete, data: {confirm: "Are you sure you want to delete mail list: #{distribution_list.name}?"}}, {:method => :delete}) do %>
+            <i class="fa fa-trash"></i>
+        <% end %>
+    </td>
+</tr>

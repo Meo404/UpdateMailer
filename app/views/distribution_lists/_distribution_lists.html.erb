@@ -1,0 +1,17 @@
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Emails</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+        <%= render @distribution_lists %>
+    </tbody>
+</table>
+<div style="margin-top: 20px">
+</div>
