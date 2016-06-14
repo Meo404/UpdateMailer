@@ -1,4 +1,7 @@
 class DistributionListsController < ApplicationController
+  include DistributionListsHelper
+  before_filter :modify_email_ids_param, :only => [:create, :update]
+
   def index
     @distribution_lists = DistributionList.all
   end
@@ -43,6 +46,12 @@ class DistributionListsController < ApplicationController
   end
 
   private
+
+  # Method to modify the params hash on create and update actions. See create_extra_mails comment
+  # @return   modified params hash
+  def modify_email_ids_param
+    create_extra_emails(params)
+  end
 
   def distribution_list_params
     params.require(:distribution_list).permit(:name, :email_ids => []) # TODO - Add additional emails
