@@ -7,8 +7,9 @@ module DistributionListsHelper
   # @param  params  params hash from create/update actions
   # @return         the params hash with replaced email_ids
   def create_extra_emails(params)
-    params[:distribution_list][:email_ids].map! {
-        |email_id| email_id.is_i? || email_id.blank? ?  email_id : Email.create(address: email_id).id}
-    return params
+    params[:distribution_list][:email_ids].map! do |email_id|
+      email_id.is_i? || email_id.blank? ? email_id : Email.create(address: email_id).id
+    end
+    params
   end
 end

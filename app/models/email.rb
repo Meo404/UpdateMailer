@@ -10,7 +10,7 @@ class Email < ActiveRecord::Base
   # Validation
   validates :address,
             presence: true,
-            length: {maximum: 255},
-            format: {with: VALID_EMAIL_REGEX},
-            uniqueness: {case_sensitive: false}
+            length: { maximum: 255 },
+            format: { with: VALID_EMAIL_REGEX },
+            uniqueness: { case_sensitive: false }
 end
