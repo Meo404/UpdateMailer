@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :email do
-    address "MyString"
+    address "test@admin.de"
   end
 end
