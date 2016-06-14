@@ -313,7 +313,6 @@ DEPENDENCIES
   capistrano-rails-console
   capistrano-rvm (~> 0.1.1)
   capybara
-  coffee-rails (~> 4.1.0)
   database_cleaner
   devise
   devise_invitable
