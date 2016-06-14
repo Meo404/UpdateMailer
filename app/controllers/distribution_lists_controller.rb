@@ -3,7 +3,7 @@ class DistributionListsController < ApplicationController
   before_filter :modify_email_ids_param, only: [:create, :update]
 
   def index
-    @distribution_lists = DistributionList.all.paginate(:page => params[:page], :per_page => 25)
+    @distribution_lists = DistributionList.search(params[:search]).paginate(:page => params[:page], :per_page => 25)
   end
 
   def new

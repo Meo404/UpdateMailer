@@ -6,16 +6,18 @@
             </div>
             <div class="ibox-content">
                 <div class="table-responsive">
+                    <%= form_tag distribution_lists_path, method: 'get', id: 'search-field' do %>
                     <div class="col-sm-4" style="padding-left: 0;padding-bottom: 5px">
                         <%= text_field_tag :search, params[:search],
-                                           class: 'form-control input-sm pull-left search-field',
+                                           class: 'form-control input-sm pull-left',
                                            placeholder: 'Search for name or emails' %>
                     </div>
+                    <% end %>
                     <%= link_to({:controller => 'distribution_lists', :action => 'new'},
                                 {:class => 'btn btn-sm btn-primary pull-right', :style => 'color: white'}, {}) do %>
                         <i class="fa fa-plus" style="margin-right: 5px"></i><span style="">New List</span>
                     <% end %>
-                    <div id="ajax-table">
+                    <div id="distribution-lists">
                         <%= render 'distribution_lists' %>
                     </div>
                 </div>

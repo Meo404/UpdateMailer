@@ -15,6 +15,7 @@
 //= require bootstrap-sprockets
 //= require metisMenu/jquery.metisMenu.js
 //= require pace/pace.min.js
+//= require bindWithDelay/bindWithDelay.js
 //= require slimscroll/jquery.slimscroll.min.js
 //= require_tree .
 
