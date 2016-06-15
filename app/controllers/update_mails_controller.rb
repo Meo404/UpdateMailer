@@ -3,7 +3,7 @@ class UpdateMailsController < ApplicationController
 
   def index
     @update_mails = UpdateMail.search(params[:search]).order(sort_column + ' ' + sort_direction)
-                              .paginate(:page => params[:page], :per_page => 25)
+                              .paginate(page: params[:page], per_page: 25)
   end
 
   def new
@@ -16,7 +16,7 @@ class UpdateMailsController < ApplicationController
       flash!(:success, locals: { title: @update_mail.title })
       redirect_to update_mails_path
     else
-      flash_now!(error: @update_mail.errors.full_messages.join("<br/>").html_safe)
+      flash_now!(error: @update_mail.errors.full_messages.join('<br/>').html_safe)
       render('new')
     end
   end
@@ -31,7 +31,7 @@ class UpdateMailsController < ApplicationController
       flash!(:success, locals: { title: @update_mail.title })
       redirect_to update_mails_path
     else
-      flash_now!(error: @update_mail.errors.full_messages.join("<br/>").html_safe)
+      flash_now!(error: @update_mail.errors.full_messages.join('<br/>').html_safe)
       render('new')
     end
   end
@@ -42,7 +42,7 @@ class UpdateMailsController < ApplicationController
       flash!(:success, locals: { title: @update_mail.title })
       redirect_to update_mails_path
     else
-      flash_now!(error: @update_mail.errors.full_messages.join("<br/>").html_safe)
+      flash_now!(error: @update_mail.errors.full_messages.join('<br/>').html_safe)
     end
   end
 

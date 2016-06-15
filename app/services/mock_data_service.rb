@@ -1,13 +1,12 @@
 class MockDataService
-
   def self.create_data
     create_emails
     create_distribution_lists
   end
 
   def self.create_emails
-    (1..250).each do |n|
-      Email.create(:address => Faker::Internet.email)
+    (1..250).each do
+      Email.create(address: Faker::Internet.email)
     end
   end
 
@@ -17,9 +16,7 @@ class MockDataService
       (1..rand(1..10)).each do
         emails << Email.offset(rand(Email.count)).first.id
       end
-
-      DistributionList.create(:name => Faker::Company.name, :email_ids => emails)
+      DistributionList.create(name: Faker::Company.name, email_ids: emails)
     end
   end
-
 end
