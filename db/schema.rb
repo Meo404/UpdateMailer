@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160615150727) do
+ActiveRecord::Schema.define(version: 20160615151548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,14 @@ ActiveRecord::Schema.define(version: 20160615150727) do
 
   add_index "distribution_lists_update_mails", ["distribution_list_id", "update_mail_id"], name: "idx_distribution_list_update_mail", using: :btree
   add_index "distribution_lists_update_mails", ["update_mail_id", "distribution_list_id"], name: "idx_update_mail_distribution_list", using: :btree
+
+  create_table "email_templates", force: :cascade do |t|
+    t.string   "name"
+    t.text     "template"
+    t.string   "preview_img"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "emails", force: :cascade do |t|
     t.string   "address"

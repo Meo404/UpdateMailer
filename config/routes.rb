@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root to: 'distribution_lists#index'
 
   resources :distribution_lists
+  resources :update_mails
 end

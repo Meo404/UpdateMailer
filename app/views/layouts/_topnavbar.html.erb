@@ -13,13 +13,13 @@
                         <i class="fa fa-tachometer"></i> Dashboard
                     </a>
                 </li>
-                <li>
-                    <a href="#">
+                <li class="<%= 'active' if controller_name == 'update_mails' %>">
+                    <a href="<%= update_mails_path %>">
                         <i class="fa fa-envelope"></i> Update Mails
                     </a>
                 </li>
                 <li class="<%= 'active' if controller_name == 'distribution_lists' %>">
-                    <a href="#">
+                    <a href="<%= distribution_lists_path %>">
                         <i class="fa fa-list"></i> Distribution Lists
                     </a>
                 </li>
