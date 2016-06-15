@@ -3,8 +3,14 @@
 <table class="table table-striped">
     <thead>
     <tr>
-        <th>ID</th>
-        <th>Name</th>
+        <th>
+            <%= sortable 'distribution_lists.id', 'ID'%>
+            <span class="fa fa-sort"></span>
+        </th>
+        <th>
+            <%= sortable 'name' %>
+            <span class="fa fa-sort"></span>
+        </th>
         <th>Emails</th>
         <th>Actions</th>
     </tr>

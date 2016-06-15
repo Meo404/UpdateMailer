@@ -1,9 +1,11 @@
 class DistributionListsController < ApplicationController
   include DistributionListsHelper
+  helper_method :sort_direction, :sort_column
   before_filter :modify_email_ids_param, only: [:create, :update]
 
   def index
-    @distribution_lists = DistributionList.search(params[:search]).paginate(:page => params[:page], :per_page => 25)
+    @distribution_lists = DistributionList.search(params[:search]).order(sort_column + ' ' + sort_direction)
+                              .paginate(:page => params[:page], :per_page => 25)
   end
 
   def new
@@ -46,6 +48,13 @@ class DistributionListsController < ApplicationController
   end
 
   private
+
+  # Method to return the column to be used for sorting
+  # if sort column param is invalid, we sort by id
+  # @return   column to be used for sorting
+  def sort_column
+    DistributionList.column_names.include?(params[:sort]) ? params[:sort] : 'distribution_lists.id'
+  end
 
   # Method to modify the params hash on create and update actions. See create_extra_mails comment
   # @return   modified params hash
