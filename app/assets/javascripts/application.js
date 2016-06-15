@@ -13,6 +13,7 @@
 //= require jquery/jquery-2.1.1.js
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require selectize
 //= require metisMenu/jquery.metisMenu.js
 //= require pace/pace.min.js
 //= require bindWithDelay/bindWithDelay.js
