@@ -1,10 +1,28 @@
 AllCops:
-  RunRailsCops: true
-  Include:
-    - '**/Gemfile'
-    - '**/Rakefile'
+  Rails:
+    Enabled: true
   Exclude:
    - 'bin/*'
+   - 'config/**/*'
+   - 'spec/**/user*'
+   - 'spec/features/users/*'
+   - 'spec/features/visitors/*'
+   - 'spec/support/**/*'
+   - 'spec/*_helper.rb'
+   - 'db/migrate/*'
    - 'db/seeds.rb'
    - 'db/schema.rb'
    - 'vendor/bundle/**/*'
+   - 'app/services/create_admin_service.rb'
+   - 'Guardfile'
+   - 'Gemfile'
+   - 'Rakefile'
+Documentation:
+  Enabled: false
+Style/IfUnlessModifier:
+  MaxLineLength: 120
+Style/WhileUntilModifier:
+  MaxLineLength: 120
+Metrics/LineLength:
+  Max: 120
+  AllowURI: true

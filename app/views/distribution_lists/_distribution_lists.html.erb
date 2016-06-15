@@ -1,0 +1,25 @@
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>
+            <%= sortable 'distribution_lists.id', 'ID'%>
+            <span class="fa fa-sort"></span>
+        </th>
+        <th>
+            <%= sortable 'name' %>
+            <span class="fa fa-sort"></span>
+        </th>
+        <th>Emails</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+        <%= render @distribution_lists %>
+    </tbody>
+</table>
+<div>
+    <%= page_entries_info @distribution_lists, :class => 'pull-left', :model => 'distribution_list' %>
+    <%= will_paginate @distribution_lists, renderer: BootstrapPagination::Rails, :class => 'pull-right no-margin' %>
+</div>

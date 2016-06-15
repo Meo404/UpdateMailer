@@ -1,0 +1,27 @@
+<div class="row" style="margin-top: 20px">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins main-box">
+            <div class="ibox-title">
+                <h5>Distribution Lists</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="table-responsive">
+                    <%= form_tag distribution_lists_path, method: 'get', id: 'search-field' do %>
+                    <div class="col-sm-4" style="padding-left: 0;padding-bottom: 5px">
+                        <%= text_field_tag :search, params[:search],
+                                           class: 'form-control input-sm pull-left',
+                                           placeholder: 'Search for list name or email addresses' %>
+                    </div>
+                    <% end %>
+                    <%= link_to({:controller => 'distribution_lists', :action => 'new'},
+                                {:class => 'btn btn-sm btn-primary pull-right', :style => 'color: white'}, {}) do %>
+                        <i class="fa fa-plus" style="margin-right: 5px"></i><span style="">New List</span>
+                    <% end %>
+                    <div id="data-table">
+                        <%= render 'distribution_lists' %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
