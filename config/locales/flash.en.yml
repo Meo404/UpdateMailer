@@ -1,0 +1,14 @@
+en:
+  flash_messages:
+    headings:
+      success: "Success!"
+      info: "Info!"
+      warning: "Warning!"
+      error: "Error!"
+    distribution_lists:
+      create:
+        success: "Distribution List \"%{name}\" created successfully! THJklaghsjdgajhdgsfhjkasgdfkasjhgdfk"
+      update:
+        success: "Distribution List \"%{name}\" updated successfully!"
+      destroy:
+        success: "Distribution List \"%{name}\" deleted!"

@@ -15,10 +15,10 @@ class DistributionListsController < ApplicationController
   def create
     @distribution_list = DistributionList.new(distribution_list_params)
     if @distribution_list.save
-      # TODO- Add Flash message
+      flash!(:success, locals: { name: @distribution_list.name })
       redirect_to distribution_lists_path
     else
-      # TODO- Add Flash message
+      flash_now!(error: @distribution_list.errors.full_messages.join("<br/>").html_safe)
       render('new')
     end
   end
@@ -28,22 +28,23 @@ class DistributionListsController < ApplicationController
   end
 
   def update
-    @distribution_list = DistributionList.new(distribution_list_params)
-    if @distribution_list.save
-      # TODO- Add Flash message
+    @distribution_list = DistributionList.find(params[:id])
+    if @distribution_list.update_attributes(distribution_list_params)
+      flash!(:success, locals: { name: @distribution_list.name })
       redirect_to distribution_lists_path
     else
-      # TODO- Add Flash message
+      flash_now!(error: @distribution_list.errors.full_messages.join("<br/>").html_safe)
       render('new')
     end
   end
 
   def destroy
-    if DistributionList.find(params[:id]).destroy
-      # TODO- Add flash message
+    @distribution_list = DistributionList.find(params[:id])
+    if @distribution_list.destroy
+      flash!(:success, locals: { name: @distribution_list.name })
       redirect_to distribution_lists_path
     else
-      # TODO- Add flash message
+      flash_now!(error: @distribution_list.errors.full_messages.join("<br/>").html_safe)
     end
   end
 
