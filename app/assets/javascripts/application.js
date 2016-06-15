@@ -17,5 +17,6 @@
 //= require pace/pace.min.js
 //= require bindWithDelay/bindWithDelay.js
 //= require slimscroll/jquery.slimscroll.min.js
+//= require ajaxTable/ajaxTable.js
 //= require_tree .
 
