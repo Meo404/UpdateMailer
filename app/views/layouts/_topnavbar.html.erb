@@ -4,7 +4,7 @@
             <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
                 <i class="fa fa-reorder"></i>
             </button>
-            <a href="#" class="navbar-brand">UpdateMailer</a>
+            <%= link_to 'UpdateMailer', root_path, class: 'navbar-brand' %>
         </div>
         <div class="navbar-collapse collapse" id="navbar">
             <ul class="nav navbar-nav">
@@ -18,7 +18,7 @@
                         <i class="fa fa-envelope"></i> Update Mails
                     </a>
                 </li>
-                <li>
+                <li class="<%= 'active' if controller_name == 'distribution_lists' %>">
                     <a href="#">
                         <i class="fa fa-list"></i> Distribution Lists
                     </a>

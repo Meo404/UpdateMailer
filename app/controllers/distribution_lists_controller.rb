@@ -64,6 +64,6 @@ class DistributionListsController < ApplicationController
   end
 
   def distribution_list_params
-    params.require(:distribution_list).permit(:name, email_ids: []) # TODO- Add additional emails
+    params.require(:distribution_list).permit(:name, email_ids: [])
   end
 end
