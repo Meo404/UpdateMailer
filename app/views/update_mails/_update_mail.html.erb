@@ -1,14 +1,14 @@
 <tr>
     <td><%= update_mail.id %></td>
     <td>
-        <%= link_to({:controller => 'update_mails', :action => 'view', :id => update_mail.id},
+        <%= link_to({ controller: 'update_mails', action: 'view', id: update_mail.id },
                     {:class => 'btn btn-xs btn-link'}, {}) do %>
             <i class="fa fa-eye" style="margin-right: 5px"></i>
             <%= update_mail.title %>
         <% end %>
     </td>
     <td>
-        <%  update_mail.distribution_lists.each do |dlist| %>
+        <% update_mail.distribution_lists.each do |dlist| %>
             <%= dlist.name %><br>
         <% end %>
     </td>
@@ -22,22 +22,25 @@
     </td>
     <td style="text-align: center"><%= update_mail.update_mail_views_count %></td>
     <td style="text-align: right">
-        <% unless update_mail.sent %>
-            <%= link_to({:controller => 'update_mails', :action => 'send_email', :id => update_mail.id},
-                        {:class => 'btn btn-xs btn-outline btn-primary dim tooltip-enabled', data:
-                                {confirm: 'Are you sure you want to send this email?', title: 'Send Email'}}, {}) do %>
-                <i class="fa fa-paper-plane-o"></i>
+        <% if update_mail.user == current_user || current_user.admin? %>
+            <% unless update_mail.sent %>
+                <%= link_to({ controller: 'update_mails', action: 'send_email', id: update_mail.id},
+                            { class: 'btn btn-xs btn-outline btn-primary dim tooltip-enabled', data:
+                                    {confirm: 'Are you sure you want to send this email?',
+                                     title: 'Send Email' }}, {}) do %>
+                    <i class="fa fa-paper-plane-o"></i>
+                <% end %>
+                <%= link_to({ controller: 'update_mails', action: 'edit', id: update_mail.id },
+                            { class: 'btn btn-xs btn-primary' }, {}) do %>
+                    <i class="fa fa-edit"></i>
+                <% end %>
             <% end %>
-            <%= link_to({:controller => 'update_mails', :action => 'edit', :id => update_mail.id},
-                        {:class => 'btn btn-xs btn-primary'}, {}) do %>
-                <i class="fa fa-edit"></i>
+            <%= link_to({ controller: 'update_mails', action: 'destroy', id: update_mail.id },
+                        { :class => 'btn btn-xs btn-danger', method: :delete,
+                         data: {confirm: "Are you sure you want to delete update mail: #{update_mail.title}?" }},
+                        { method: :delete }) do %>
+                <i class="fa fa-trash"></i>
             <% end %>
-        <% end %>
-        <%= link_to({:controller => 'update_mails', :action => 'destroy', :id => update_mail.id},
-                    {:class => 'btn btn-xs btn-danger', :method => :delete,
-                     data: {confirm: "Are you sure you want to delete update mail: #{update_mail.title}?"}},
-                    {:method => :delete}) do %>
-            <i class="fa fa-trash"></i>
         <% end %>
     </td>
 </tr>

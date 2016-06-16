@@ -13,7 +13,7 @@
         </th>
         <th>Distribution Lists</th>
         <th style="text-align: center">
-            <%= sortable 'created_at', 'Created At' %>
+            <%= sortable 'id', 'Created At' %>
             <span class="fa fa-sort"></span>
         </th>
         <th style="text-align: center">
@@ -31,6 +31,6 @@
     </tbody>
 </table>
 <div>
-    <%= page_entries_info @update_mails, :class => 'pull-left', :model => 'update_mails' %>
-    <%= will_paginate @update_mails, renderer: BootstrapPagination::Rails, :class => 'pull-right no-margin' %>
+    <%= page_entries_info @update_mails, class: 'pull-left', model: 'update_mails' %>
+    <%= will_paginate @update_mails, renderer: BootstrapPagination::Rails, class: 'pull-right no-margin' %>
 </div>

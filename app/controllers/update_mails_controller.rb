@@ -2,6 +2,7 @@ class UpdateMailsController < ApplicationController
   helper_method :sort_direction, :sort_column
   before_action :authenticate_user!
   before_action :allowed_to_modify, only: [:edit, :update, :send_email, :destroy]
+  before_action :allowed_to_view, only: [:view]
 
   def index
     @update_mails = UpdateMail.search(params[:search], current_user).order(sort_column + ' ' + sort_direction('desc'))
@@ -90,6 +91,17 @@ class UpdateMailsController < ApplicationController
   # else he will be redirected to the overview
   def allowed_to_modify
     unless UpdateMail.find(params[:id]).user_id == current_user.id || current_user.admin?
+      flash!(error: 'Action not allowed!')
+      redirect_to update_mails_path
+    end
+  end
+
+  # Checks if the current user is allowed to view an update mail
+  # if the mail is public OR belongs to the user OR the user is admin then the user is allowed to view
+  # else he will be redirected to the overview
+  def allowed_to_view
+    @update_mail = UpdateMail.find(params[:id])
+    if @update_mail.public == false && !(@update_mail.user_id == current_user.id || current_user.admin?)
       flash!(error: 'Action not allowed!')
       redirect_to update_mails_path
     end
