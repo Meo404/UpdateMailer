@@ -7,6 +7,7 @@ class UpdateMail < ActiveRecord::Base
   # Validation
   validates :title, presence: true, length: { maximum: 255, minimum: 3 }, uniqueness: { case_sensitive: false }
   validates :body, presence: true
+  validates :distribution_lists, presence: true
 
   # Search function for the UpdateMail model.
   # if search param is provided it retrieves all update mails where the title or any assigned distribution lists name

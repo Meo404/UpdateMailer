@@ -11,9 +11,13 @@ class EmailTemplatesController < ApplicationController
   # if id is provided in the call only the specific record will be retrieved
   # else all records will be retrieved
   # Used by the update email selection window
-  def get_templates
-    if params.has_key?(:id)
-      render json: @email_templates = EmailTemplate.find(params[:id]).to_json
+  def templates
+    if params.key?(:id)
+      if EmailTemplate.exists?(id: params[:id])
+        render json: @email_templates = EmailTemplate.find(params[:id]).to_json
+      else
+        render nothing: true, status: 404
+      end
     else
       render json: @email_templates = EmailTemplate.all.to_json
     end

@@ -1,0 +1,18 @@
+<div class="ibox float-e-margins email-window">
+    <div class="ibox-title">
+        <h5>Edit Email</h5>
+        <div class="ibox-tools">
+            <% if current_page?(action: 'new') %>
+            <button class="btn btn-default btn-xs pull-right" type="button" style="" data-toggle="modal" data-target="#templateModal">
+                <i class="fa fa-file-text-o"></i> Switch Template
+            </button>
+            <% end %>
+            <button class="btn btn-default btn-xs pull-right" type="button" style="margin-right: 10px" onclick="toggleSummernote()">
+                <i class="fa fa-pencil-square-o"></i> Toggle Edit
+            </button>
+        </div>
+    </div>
+    <div class="ibox-content email-template" id="summernote" style="display: block">
+        <%= raw @update_mail.body unless current_page?('new') %>
+    </div>
+</div>

@@ -14,10 +14,14 @@ class UpdateMailsController < ApplicationController
     @update_mail = UpdateMail.new(update_mail_params)
     if @update_mail.save
       flash!(:success, locals: { title: @update_mail.title })
-      redirect_to update_mails_path
+      render js: "window.location = '#{update_mails_path}'"
     else
-      flash_now!(error: @update_mail.errors.full_messages.join('<br/>').html_safe)
-      render('new')
+      respond_to do |format|
+        format.js {
+          flash!(error: @update_mail.errors.full_messages.join('<br/>').html_safe)
+          render js: "window.location = '#{new_update_mail_path}'"
+        }
+      end
     end
   end
 
@@ -29,10 +33,14 @@ class UpdateMailsController < ApplicationController
     @update_mail = UpdateMail.find(params[:id])
     if @update_mail.update_attributes(update_mail_params)
       flash!(:success, locals: { title: @update_mail.title })
-      redirect_to update_mails_path
+      render js: "window.location = '#{update_mails_path}'"
     else
-      flash_now!(error: @update_mail.errors.full_messages.join('<br/>').html_safe)
-      render('new')
+      respond_to do |format|
+        format.js {
+          flash!(error: @update_mail.errors.full_messages.join('<br/>').html_safe)
+          render js: "window.location = '#{edit_update_mail_path(@update_mail)}'"
+        }
+      end
     end
   end
 
@@ -53,5 +61,9 @@ class UpdateMailsController < ApplicationController
   # @return   column to be used for sorting
   def sort_column
     UpdateMail.column_names.include?(params[:sort]) ? params[:sort] : 'update_mails.id'
+  end
+
+  def update_mail_params
+    params.require(:update_mail).permit(:title, :body, distribution_list_ids: [])
   end
 end
