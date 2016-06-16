@@ -4,6 +4,7 @@ AllCops:
   Exclude:
    - 'bin/*'
    - 'config/**/*'
+   - 'spec/**/*'
    - 'spec/**/user*'
    - 'spec/features/users/*'
    - 'spec/features/visitors/*'

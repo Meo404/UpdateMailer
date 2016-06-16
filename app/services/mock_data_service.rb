@@ -11,9 +11,9 @@ class MockDataService
 
   # Function to create 100 mock users
   def self.create_users
-    (1..250).each do |n|
+    (1..250).each do
       password = Faker::Internet.password(8)
-      User.create(:email => Faker::Internet.email, password: password, password_confirmation: password)
+      User.create(email: Faker::Internet.email, password: password, password_confirmation: password)
     end
   end
 
@@ -69,10 +69,10 @@ class MockDataService
       if update_mail.sent
         rand(1..200).times do
           view_params = {
-              ip: Faker::Internet.ip_v4_address,
-              os: operating_systems.sample,
-              device_type: device_types.sample,
-              created_at: Faker::Time.between(7.days.ago, Time.now, :all)
+            ip: Faker::Internet.ip_v4_address,
+            os: operating_systems.sample,
+            device_type: device_types.sample,
+            created_at: Faker::Time.between(7.days.ago, Time.now, :all)
           }
           update_mail.update_mail_views.create(view_params)
         end

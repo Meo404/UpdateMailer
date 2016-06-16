@@ -34,14 +34,14 @@ class UpdateMail < ActiveRecord::Base
 
   def self.admin_search(search)
     includes(:distribution_lists)
-        .where('LOWER(distribution_lists.name) LIKE ? OR LOWER(title) LIKE ?',
-               "%#{search.downcase}%", "%#{search.downcase}%").references(:distribution_lists)
+      .where('LOWER(distribution_lists.name) LIKE ? OR LOWER(title) LIKE ?',
+             "%#{search.downcase}%", "%#{search.downcase}%").references(:distribution_lists)
   end
 
   def self.user_search(search, user_id)
     records = includes(:distribution_lists)
-                  .where('LOWER(distribution_lists.name) LIKE ? OR LOWER(title) LIKE ?',
-                         "%#{search.downcase}%", "%#{search.downcase}%").references(:distribution_lists)
+              .where('LOWER(distribution_lists.name) LIKE ? OR LOWER(title) LIKE ?',
+                     "%#{search.downcase}%", "%#{search.downcase}%").references(:distribution_lists)
     records.where('public = true OR user_id = ?', user_id)
   end
 
@@ -51,5 +51,4 @@ class UpdateMail < ActiveRecord::Base
     @sanitization_service = SanitizationService.new(body)
     @sanitization_service.sanitize
   end
-
 end
