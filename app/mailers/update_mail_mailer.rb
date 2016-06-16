@@ -11,6 +11,10 @@ class UpdateMailMailer < ActionMailer::Base
       end
     end
 
+    # Allows opening tracking by the Ahoy Email gem
+    track user: @update_mail
+    track utm_params: false
+
     mail to: to,
          from: 'Bonial Infomailer <infomail@kaufda.de>',
          subject: @update_mail.title

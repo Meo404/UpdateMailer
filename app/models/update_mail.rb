@@ -1,5 +1,6 @@
 class UpdateMail < ActiveRecord::Base
   has_and_belongs_to_many :distribution_lists
+  has_many :update_mail_views
 
   # Before save actions
   before_save :sanitize_body

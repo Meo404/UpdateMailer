@@ -61,7 +61,7 @@ class UpdateMailsController < ApplicationController
       # @update_mail.update_attribute(:sent, true)
       redirect_to update_mails_path
     else
-      flash_now!(:error => "Infomail couldn't be send!")
+      flash_now!(error: "Infomail couldn't be send!")
       render('index')
     end
   end
