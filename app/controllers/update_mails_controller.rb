@@ -54,6 +54,18 @@ class UpdateMailsController < ApplicationController
     end
   end
 
+  def send_email
+    @update_mail = UpdateMail.find(params[:id])
+    if UpdateMailMailer.send_mail(@update_mail).deliver
+      flash!(:success)
+      # @update_mail.update_attribute(:sent, true)
+      redirect_to update_mails_path
+    else
+      flash_now!(:error => "Infomail couldn't be send!")
+      render('index')
+    end
+  end
+
   private
 
   # Method to return the column to be used for sorting
