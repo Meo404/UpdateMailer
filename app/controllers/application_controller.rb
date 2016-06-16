@@ -6,10 +6,9 @@ class ApplicationController < ActionController::Base
   # Function to set sort directions for tables
   # @return Returns sort direction
   def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
+    %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
   end
 
   def order_input
-
   end
 end

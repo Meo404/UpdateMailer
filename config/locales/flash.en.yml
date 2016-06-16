@@ -7,8 +7,22 @@ en:
       error: "Error!"
     distribution_lists:
       create:
-        success: "Distribution List \"%{name}\" created successfully! THJklaghsjdgajhdgsfhjkasgdfkasjhgdfk"
+        success: "Distribution List \"%{name}\" created successfully!"
       update:
         success: "Distribution List \"%{name}\" updated successfully!"
       destroy:
         success: "Distribution List \"%{name}\" deleted!"
+    update_mails:
+      create:
+        success: "Update Mail \"%{title}\" created successfully!"
+      update:
+        success: "Update Mail \"%{title}\" updated successfully!"
+      destroy:
+        success: "Update Mail \"%{title}\" deleted!"
+    email_templates:
+      create:
+        success: "Email Template \"%{name}\" created successfully!"
+      update:
+        success: "Email Template \"%{name}\" updated successfully!"
+      destroy:
+        success: "Email Template \"%{name}\" deleted!"

@@ -19,5 +19,6 @@
 //= require bindWithDelay/bindWithDelay.js
 //= require slimscroll/jquery.slimscroll.min.js
 //= require ajaxTable/ajaxTable.js
+//= require summernote
 //= require_tree .
 

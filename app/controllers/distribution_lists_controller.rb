@@ -5,7 +5,7 @@ class DistributionListsController < ApplicationController
 
   def index
     @distribution_lists = DistributionList.search(params[:search]).order(sort_column + ' ' + sort_direction)
-                              .paginate(:page => params[:page], :per_page => 25)
+                                          .paginate(page: params[:page], per_page: 25)
   end
 
   def new
@@ -18,7 +18,7 @@ class DistributionListsController < ApplicationController
       flash!(:success, locals: { name: @distribution_list.name })
       redirect_to distribution_lists_path
     else
-      flash_now!(error: @distribution_list.errors.full_messages.join("<br/>").html_safe)
+      flash_now!(error: @distribution_list.errors.full_messages.join('<br/>').html_safe)
       render('new')
     end
   end
@@ -33,7 +33,7 @@ class DistributionListsController < ApplicationController
       flash!(:success, locals: { name: @distribution_list.name })
       redirect_to distribution_lists_path
     else
-      flash_now!(error: @distribution_list.errors.full_messages.join("<br/>").html_safe)
+      flash_now!(error: @distribution_list.errors.full_messages.join('<br/>').html_safe)
       render('new')
     end
   end
@@ -44,7 +44,7 @@ class DistributionListsController < ApplicationController
       flash!(:success, locals: { name: @distribution_list.name })
       redirect_to distribution_lists_path
     else
-      flash_now!(error: @distribution_list.errors.full_messages.join("<br/>").html_safe)
+      flash_now!(error: @distribution_list.errors.full_messages.join('<br/>').html_safe)
     end
   end
 

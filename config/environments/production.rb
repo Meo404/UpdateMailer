@@ -92,4 +92,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Add authenticity token in remote forms
+  config.action_view.embed_authenticity_token_in_remote_forms = true
 end

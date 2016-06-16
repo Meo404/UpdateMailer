@@ -1,0 +1,16 @@
+<tr>
+    <td><%= email_template.id %></td>
+    <td><%= email_template.name %></td>
+    <td style="text-align: right">
+        <%= link_to({:controller => 'email_templates', :action => 'edit', :id => email_template.id},
+                    {:class => 'btn btn-xs btn-primary'}, {}) do %>
+            <i class="fa fa-edit"></i>
+        <% end %>
+        <%= link_to({:controller => 'email_templates', :action => 'destroy', :id => email_template.id},
+                    {:class => 'btn btn-xs btn-danger', :method => :delete,
+                     data: {confirm: "Are you sure you want to delete email template: #{email_template.name}?"}},
+                    {:method => :delete}) do %>
+            <i class="fa fa-trash"></i>
+        <% end %>
+    </td>
+</tr>

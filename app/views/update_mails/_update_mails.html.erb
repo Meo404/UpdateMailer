@@ -1,0 +1,25 @@
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>
+            <%= sortable 'update_mails.id', 'ID'%>
+            <span class="fa fa-sort"></span>
+        </th>
+        <th>
+            <%= sortable 'title' %>
+            <span class="fa fa-sort"></span>
+        </th>
+        <th>Distribution Lists</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%= render @update_mails %>
+    </tbody>
+</table>
+<div>
+    <%= page_entries_info @update_mails, :class => 'pull-left', :model => 'update_mails' %>
+    <%= will_paginate @update_mails, renderer: BootstrapPagination::Rails, :class => 'pull-right no-margin' %>
+</div>
