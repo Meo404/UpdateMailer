@@ -59,10 +59,10 @@ class MockDataService
       if update_mail.sent
         rand(1..200).times do
           view_params = {
-              :ip => Faker::Internet.ip_v4_address,
-              :os => operating_systems.sample,
-              :device_type => device_types.sample,
-              :created_at => Faker::Time.between(7.days.ago, Time.now, :all)
+              ip: Faker::Internet.ip_v4_address,
+              os: operating_systems.sample,
+              device_type: device_types.sample,
+              created_at: Faker::Time.between(7.days.ago, Time.now, :all)
           }
           update_mail.update_mail_views.create(view_params)
         end

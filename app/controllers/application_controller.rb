@@ -9,4 +9,8 @@ class ApplicationController < ActionController::Base
   def sort_direction(default = 'asc')
     %w(asc desc).include?(params[:direction]) ? params[:direction] : default
   end
+
+  def check_admin
+    redirect_to :root unless current_user && current_user.admin?
+  end
 end
