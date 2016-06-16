@@ -2,10 +2,19 @@ class MockDataService
   # Function to create mock data set.
   # Creates: emails, distribution lists, update mails, update mail views
   def self.create_data
+    create_users
     create_emails
     create_distribution_lists
     create_update_mails
     create_views
+  end
+
+  # Function to create 100 mock users
+  def self.create_users
+    (1..250).each do |n|
+      password = Faker::Internet.password(8)
+      User.create(:email => Faker::Internet.email, password: password, password_confirmation: password)
+    end
   end
 
   # Function to create 250 mock emails.
@@ -35,10 +44,11 @@ class MockDataService
         distribution_lists << DistributionList.offset(rand(DistributionList.count)).first.id
       end
 
+      user = User.find(User.offset(rand(User.count)).first.id)
       sent = [true, false].sample
       created_at = Faker::Time.between(30.days.ago, 7.days.ago, :all)
       sent_at = sent ? Faker::Time.between(created_at, Time.now, :all) : ''
-      UpdateMail.create(
+      user.update_mails.create(
                     title: Faker::App.name,
                     body: Faker::Lorem.paragraph,
                     distribution_list_ids: distribution_lists,
