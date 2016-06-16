@@ -4,7 +4,7 @@
     <thead>
     <tr>
         <th>
-            <%= sortable 'update_mails.id', 'ID'%>
+            <%= sortable 'id', 'ID'%>
             <span class="fa fa-sort"></span>
         </th>
         <th>
@@ -12,7 +12,18 @@
             <span class="fa fa-sort"></span>
         </th>
         <th>Distribution Lists</th>
-        <th>Actions</th>
+        <th style="text-align: center">
+            <%= sortable 'created_at', 'Created At' %>
+            <span class="fa fa-sort"></span>
+        </th>
+        <th style="text-align: center">
+            <%= sortable 'sent_at', 'Sent At' %>
+            <span class="fa fa-sort"></span>
+        </th>
+        <th style="text-align: center">
+            <%= sortable 'update_mail_views_count', 'View Count' %>
+        </th>
+        <th></th>
     </tr>
     </thead>
     <tbody>

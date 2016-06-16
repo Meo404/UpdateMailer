@@ -58,7 +58,7 @@ class UpdateMailsController < ApplicationController
     @update_mail = UpdateMail.find(params[:id])
     if UpdateMailMailer.send_mail(@update_mail).deliver
       flash!(:success)
-      @update_mail.update_attribute(:sent, true)
+      @update_mail.update_attributes(sent: true, sent_at: Time.now)
       redirect_to update_mails_path
     else
       flash_now!(error: "Infomail couldn't be send!")

@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 20160616163805) do
     t.text     "body"
     t.string   "permalink"
     t.boolean  "sent"
+    t.datetime "sent_at"
     t.boolean  "public",                  default: false
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
