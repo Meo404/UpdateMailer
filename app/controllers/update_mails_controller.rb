@@ -2,8 +2,12 @@ class UpdateMailsController < ApplicationController
   helper_method :sort_direction, :sort_column
 
   def index
-    @update_mails = UpdateMail.search(params[:search]).order(sort_column + ' ' + sort_direction)
+    @update_mails = UpdateMail.search(params[:search]).order(sort_column + ' ' + sort_direction('desc'))
                               .paginate(page: params[:page], per_page: 25)
+  end
+
+  def view
+    @update_mail = UpdateMail.find(params[:id])
   end
 
   def new

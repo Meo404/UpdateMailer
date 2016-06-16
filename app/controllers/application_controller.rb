@@ -4,8 +4,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   # Function to set sort directions for tables
+  # @param  default optional parameter to set the default sort direction
   # @return Returns sort direction
-  def sort_direction
-    %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
+  def sort_direction(default = 'asc')
+    %w(asc desc).include?(params[:direction]) ? params[:direction] : default
   end
 end
