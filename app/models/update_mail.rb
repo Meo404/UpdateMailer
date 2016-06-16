@@ -19,7 +19,7 @@ class UpdateMail < ActiveRecord::Base
   def self.search(search)
     if search
       includes(:distribution_lists)
-        .where('LOWER(distribution_list.name) LIKE ? OR LOWER(title) LIKE ?',
+        .where('LOWER(distribution_lists.name) LIKE ? OR LOWER(title) LIKE ?',
                "%#{search.downcase}%", "%#{search.downcase}%").references(:distribution_lists)
     else
       where(nil)

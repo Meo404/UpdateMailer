@@ -2,8 +2,12 @@ class UpdateMailsController < ApplicationController
   helper_method :sort_direction, :sort_column
 
   def index
-    @update_mails = UpdateMail.search(params[:search]).order(sort_column + ' ' + sort_direction)
+    @update_mails = UpdateMail.search(params[:search]).order(sort_column + ' ' + sort_direction('desc'))
                               .paginate(page: params[:page], per_page: 25)
+  end
+
+  def view
+    @update_mail = UpdateMail.find(params[:id])
   end
 
   def new
@@ -58,7 +62,7 @@ class UpdateMailsController < ApplicationController
     @update_mail = UpdateMail.find(params[:id])
     if UpdateMailMailer.send_mail(@update_mail).deliver
       flash!(:success)
-      @update_mail.update_attribute(:sent, true)
+      @update_mail.update_attributes(sent: true, sent_at: Time.now)
       redirect_to update_mails_path
     else
       flash_now!(error: "Infomail couldn't be send!")
