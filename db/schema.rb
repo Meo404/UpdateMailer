@@ -11,10 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160616072837) do
+ActiveRecord::Schema.define(version: 20160616163805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ahoy_messages", force: :cascade do |t|
+    t.string   "token"
+    t.text     "to"
+    t.integer  "user_id"
+    t.string   "user_type"
+    t.string   "mailer"
+    t.text     "subject"
+    t.text     "content"
+    t.datetime "sent_at"
+    t.datetime "opened_at"
+    t.datetime "clicked_at"
+  end
+
+  add_index "ahoy_messages", ["token"], name: "index_ahoy_messages_on_token", using: :btree
+  add_index "ahoy_messages", ["user_id", "user_type"], name: "index_ahoy_messages_on_user_id_and_user_type", using: :btree
 
   create_table "distribution_lists", force: :cascade do |t|
     t.string   "name"
@@ -52,14 +68,31 @@ ActiveRecord::Schema.define(version: 20160616072837) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "update_mail_views", force: :cascade do |t|
+    t.integer  "update_mail_id"
+    t.string   "ip"
+    t.string   "user_agent"
+    t.string   "browser"
+    t.string   "browser_version"
+    t.string   "os"
+    t.string   "os_version"
+    t.string   "device_name"
+    t.string   "device_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "update_mail_views", ["update_mail_id"], name: "index_update_mail_views_on_update_mail_id", using: :btree
+
   create_table "update_mails", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
     t.string   "permalink"
     t.boolean  "sent"
-    t.boolean  "public",     default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.boolean  "public",                  default: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.integer  "update_mail_views_count", default: 0
   end
 
   create_table "users", force: :cascade do |t|
@@ -96,4 +129,5 @@ ActiveRecord::Schema.define(version: 20160616072837) do
   add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "update_mail_views", "update_mails"
 end

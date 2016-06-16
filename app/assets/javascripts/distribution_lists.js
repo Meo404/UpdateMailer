@@ -4,7 +4,7 @@
  */
 
 $(document).ready(function() {
-
+    // TODO- Update Regex. It's currently matching non emails as well
     var REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
         '(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)';
 
@@ -47,6 +47,6 @@ $(document).ready(function() {
             }
             alert('Invalid email address.');
             return false;
-        },
+        }
     });
 });

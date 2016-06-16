@@ -8,7 +8,4 @@ class ApplicationController < ActionController::Base
   def sort_direction
     %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
   end
-
-  def order_input
-  end
 end
