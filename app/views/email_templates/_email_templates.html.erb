@@ -1,0 +1,24 @@
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>
+            <%= sortable 'email_templates.id', 'ID'%>
+            <span class="fa fa-sort"></span>
+        </th>
+        <th>
+            <%= sortable 'name' %>
+            <span class="fa fa-sort"></span>
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <%= render @email_templates %>
+    </tbody>
+</table>
+<div>
+    <%= page_entries_info @email_templates, :class => 'pull-left', :model => 'email_template' %>
+    <%= will_paginate @email_templates, renderer: BootstrapPagination::Rails, :class => 'pull-right no-margin' %>
+</div>

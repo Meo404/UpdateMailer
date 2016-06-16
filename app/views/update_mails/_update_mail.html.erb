@@ -13,7 +13,7 @@
         <% end %>
         <%= link_to({:controller => 'update_mails', :action => 'destroy', :id => update_mail.id},
                     {:class => 'btn btn-xs btn-danger', :method => :delete,
-                     data: {confirm: "Are you sure you want to delete mail list: #{update_mail.title}?"}},
+                     data: {confirm: "Are you sure you want to delete update mail: #{update_mail.title}?"}},
                     {:method => :delete}) do %>
             <i class="fa fa-trash"></i>
         <% end %>

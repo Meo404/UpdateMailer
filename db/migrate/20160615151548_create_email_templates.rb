@@ -3,7 +3,6 @@ class CreateEmailTemplates < ActiveRecord::Migration
     create_table :email_templates do |t|
       t.string :name
       t.text :template
-      t.string :preview_img
 
       t.timestamps null: false
     end

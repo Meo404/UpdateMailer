@@ -19,3 +19,10 @@ en:
         success: "Update Mail \"%{title}\" updated successfully!"
       destroy:
         success: "Update Mail \"%{title}\" deleted!"
+    email_templates:
+      create:
+        success: "Email Template \"%{name}\" created successfully!"
+      update:
+        success: "Email Template \"%{name}\" updated successfully!"
+      destroy:
+        success: "Email Template \"%{name}\" deleted!"

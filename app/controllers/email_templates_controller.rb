@@ -1,0 +1,61 @@
+class EmailTemplatesController < ApplicationController
+  helper_method :sort_direction, :sort_column
+
+  def index
+    @email_templates = EmailTemplate.search(params[:search]).order(sort_column + ' ' + sort_direction)
+                                    .paginate(page: params[:page], per_page: 25)
+  end
+
+  def new
+    @email_template = EmailTemplate.new
+  end
+
+  def create
+    @email_template = EmailTemplate.new(email_template_params)
+    if @email_template.save
+      flash!(:success, locals: { name: @email_template.name })
+      redirect_to email_templates_path
+    else
+      flash_now!(error: @email_template.errors.full_messages.join('<br/>').html_safe)
+      render('new')
+    end
+  end
+
+  def edit
+    @email_template = EmailTemplate.find(params[:id])
+  end
+
+  def update
+    @email_template = EmailTemplate.find(params[:id])
+    if @email_template.update_attributes(email_template_params)
+      flash!(:success, locals: { name: @email_template.name })
+      redirect_to email_templates_path
+    else
+      flash_now!(error: @email_template.errors.full_messages.join('<br/>').html_safe)
+      render('new')
+    end
+  end
+
+  def destroy
+    @email_template = EmailTemplate.find(params[:id])
+    if @email_template.destroy
+      flash!(:success, locals: { name: @email_template.name })
+      redirect_to distribution_lists_path
+    else
+      flash_now!(error: @email_template.errors.full_messages.join('<br/>').html_safe)
+    end
+  end
+
+  private
+
+  # Method to return the column to be used for sorting
+  # if sort column param is invalid, we sort by id
+  # @return   column to be used for sorting
+  def sort_column
+    EmailTemplate.column_names.include?(params[:sort]) ? params[:sort] : 'email_templates.id'
+  end
+
+  def email_template_params
+    params.require(:email_template).permit(:name, :template, :preview_image)
+  end
+end
