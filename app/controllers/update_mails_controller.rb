@@ -1,5 +1,6 @@
 class UpdateMailsController < ApplicationController
   helper_method :sort_direction, :sort_column
+  before_action :authenticate_user!
 
   def index
     @update_mails = UpdateMail.search(params[:search]).order(sort_column + ' ' + sort_direction('desc'))

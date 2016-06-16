@@ -30,6 +30,7 @@ db/*.sqlite3
 *.sassc
 .redcar/
 .sass-cache
+/app/assets/images/logos/*
 /config/config.yml
 /coverage.data
 /coverage/

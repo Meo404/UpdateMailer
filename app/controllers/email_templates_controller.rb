@@ -1,6 +1,7 @@
 class EmailTemplatesController < ApplicationController
   helper_method :sort_direction, :sort_column
   before_filter :ensure_json_request, only: [:get_templates]
+  before_action :authenticate_user!
 
   def index
     @email_templates = EmailTemplate.search(params[:search]).order(sort_column + ' ' + sort_direction)

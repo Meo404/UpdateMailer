@@ -2,6 +2,7 @@ class DistributionListsController < ApplicationController
   include DistributionListsHelper
   helper_method :sort_direction, :sort_column
   before_filter :modify_email_ids_param, only: [:create, :update]
+  before_action :authenticate_user!
 
   def index
     @distribution_lists = DistributionList.search(params[:search]).order(sort_column + ' ' + sort_direction)
