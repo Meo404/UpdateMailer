@@ -1,0 +1,29 @@
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+<%= will_paginate @users, renderer: BootstrapPagination::Rails, :class => 'pull-right no-margin' %>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>
+            <%= sortable 'id', 'ID' %>
+            <span class="fa fa-sort"></span>
+        </th>
+        <th>
+            <%= sortable 'email', 'Email Address' %>
+            <span class="fa fa-sort"></span>
+        </th>
+        <th>
+            <%= sortable 'admin' %>
+            <span class="fa fa-sort"></span>
+        </th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%= render @users %>
+    </tbody>
+</table>
+<div style="margin-top: 20px">
+    <%= page_entries_info @users, class: 'pull-left', model: 'user' %>
+    <%= will_paginate @users, renderer: BootstrapPagination::Rails, class: 'pull-right no-margin' %>
+</div>

@@ -1,8 +1,11 @@
 class UpdateMailsController < ApplicationController
   helper_method :sort_direction, :sort_column
+  before_action :authenticate_user!
+  before_action :allowed_to_modify, only: [:edit, :update, :send_email, :destroy]
+  before_action :allowed_to_view, only: [:view]
 
   def index
-    @update_mails = UpdateMail.search(params[:search]).order(sort_column + ' ' + sort_direction('desc'))
+    @update_mails = UpdateMail.search(params[:search], current_user).order(sort_column + ' ' + sort_direction('desc'))
                               .paginate(page: params[:page], per_page: 25)
   end
 
@@ -11,11 +14,11 @@ class UpdateMailsController < ApplicationController
   end
 
   def new
-    @update_mail = UpdateMail.new
+    @update_mail = current_user.update_mails.build
   end
 
   def create
-    @update_mail = UpdateMail.new(update_mail_params)
+    @update_mail = current_user.update_mails.build(update_mail_params)
     if @update_mail.save
       flash!(:success, locals: { title: @update_mail.title })
       render js: "window.location = '#{update_mails_path}'"
@@ -65,7 +68,7 @@ class UpdateMailsController < ApplicationController
       @update_mail.update_attributes(sent: true, sent_at: Time.now)
       redirect_to update_mails_path
     else
-      flash_now!(error: "Infomail couldn't be send!")
+      flash_now!(error: "Update Mail couldn't be send!")
       render('index')
     end
   end
@@ -81,5 +84,26 @@ class UpdateMailsController < ApplicationController
 
   def update_mail_params
     params.require(:update_mail).permit(:title, :body, distribution_list_ids: [])
+  end
+
+  # Checks if the current user is allowed to modify an update mail
+  # if the user is admin or creator of the update mail he is allowed
+  # else he will be redirected to the overview
+  def allowed_to_modify
+    unless UpdateMail.find(params[:id]).user_id == current_user.id || current_user.admin?
+      flash!(error: 'Action not allowed!')
+      redirect_to update_mails_path
+    end
+  end
+
+  # Checks if the current user is allowed to view an update mail
+  # if the mail is public OR belongs to the user OR the user is admin then the user is allowed to view
+  # else he will be redirected to the overview
+  def allowed_to_view
+    @update_mail = UpdateMail.find(params[:id])
+    if @update_mail.public == false && !(@update_mail.user_id == current_user.id || current_user.admin?)
+      flash!(error: 'Action not allowed!')
+      redirect_to update_mails_path
+    end
   end
 end

@@ -26,3 +26,12 @@ en:
         success: "Email Template \"%{name}\" updated successfully!"
       destroy:
         success: "Email Template \"%{name}\" deleted!"
+    users:
+      create:
+        success: "User \"%{email}\" created successfully!"
+      update:
+        success: "User \"%{email}\" updated successfully!"
+      destroy:
+        success: "User \"%{email}\" deleted!"
+      update_profile:
+        success: "Password changed!"
