@@ -1,3 +1,5 @@
+# Update Mail Mailer
+# Used to send Update Mails from the Application
 class UpdateMailMailer < ActionMailer::Base
   default from: 'Bonial Infomailer <infomail@kaufda.de>'
 

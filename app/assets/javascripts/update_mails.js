@@ -79,6 +79,8 @@ function selectTemplate() {
 
 /*
  Method that will do an Ajax Call to get the selected templates html
+ @param     template_id     Id of the template to be retrieved
+ @return    template body
  */
 function getEmailBody(template_id) {
     var template;
