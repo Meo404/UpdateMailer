@@ -29,6 +29,7 @@ group :development do
 end
 gem 'devise'
 gem 'devise_invitable'
+gem 'figaro'
 gem 'pg'
 group :development do
   gem 'better_errors'

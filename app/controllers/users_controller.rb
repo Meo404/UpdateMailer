@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
+    if User.invite!(email: @user.email, admin: @user.admin)
       flash!(:success, locals: { email: @user.email })
       redirect_to users_path
     else
@@ -64,7 +64,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :admin)
+    params.require(:user).permit(:email, :admin)
   end
 
   def user_update_params
