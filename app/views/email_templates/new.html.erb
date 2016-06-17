@@ -15,8 +15,14 @@
                     <div class="form-group">
                         <%= f.label :template, 'Email Template', class: 'col-sm-2 control-label' %>
                         <div class="col-sm-10">
-                            <%= f.text_area :template, {rows: 10, class: 'form-control', placeholder: 'Paste template in here'} %>
+                            <%= f.text_area :template, {rows: 10, class: 'form-control template-area',
+                                                        placeholder: 'Paste template in here. Use HTML syntax!'} %>
                         </div>
+                        <button class="btn btn-primary btn-xs pull-right" type="button"
+                                style="margin-top: 5px; margin-right: 14px" data-toggle="modal"
+                                data-target="#templateModal" onclick="loadPreview()">
+                            <i class="fa fa-eye"></i> Preview
+                        </button>
                     </div>
                     <div class="form-group">
                         <%= f.label :preview_image, 'Preview Image', class: 'col-sm-2 control-label' %>
@@ -31,3 +37,5 @@
                 <% end %>
                 </div>
 </div>
+
+<%= render 'preview_modal' %>

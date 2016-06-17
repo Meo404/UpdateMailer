@@ -1,2 +1,7 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
+/*
+ Method to allow showing preview images for the Template selection
+ IF the template selection is a custom template, a textarea to paste the html will be shown
+ */
+function loadPreview() {
+    $('.modal-body').html($('.template-area').val());
+}
