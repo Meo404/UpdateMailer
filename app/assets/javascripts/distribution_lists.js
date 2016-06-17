@@ -2,7 +2,6 @@
     Selectize setup for distribution lists
     Allows the user to add non-stored email addresses to the list -> They will be persisted in the BE
  */
-
 $(document).ready(function() {
     // TODO- Update Regex. It's currently matching non emails as well
     var REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +

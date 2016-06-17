@@ -20,5 +20,9 @@
 //= require slimscroll/jquery.slimscroll.min.js
 //= require ajaxTable/ajaxTable.js
 //= require summernote
-//= require_tree .
+//= require inspinia.js
 
+// FadeOut flash messages
+$(document).ready(function () {
+    setTimeout("$('.alert').fadeOut('slow')", 2500);
+});
