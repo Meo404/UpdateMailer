@@ -11,6 +11,6 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.precompile += %w( search.js )
 
 # Load necessary javascript files and stylesheets controller specific
-%w( distribution_lists email_templates update_mails users ).each do |controller|
+%w( distribution_lists email_templates update_mails users statistics).each do |controller|
   Rails.application.config.assets.precompile += ["#{controller}.js", "#{controller}.scss"]
 end

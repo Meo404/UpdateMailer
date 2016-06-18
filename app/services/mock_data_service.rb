@@ -48,15 +48,9 @@ class MockDataService
       sent = [true, false].sample
       created_at = Faker::Time.between(30.days.ago, 7.days.ago, :all)
       sent_at = sent ? Faker::Time.between(created_at, Time.now, :all) : ''
-      user.update_mails.create(
-                    title: Faker::App.name,
-                    body: Faker::Lorem.paragraph,
-                    distribution_list_ids: distribution_lists,
-                    sent: sent,
-                    sent_at: sent_at,
-                    public: [true, false].sample,
-                    created_at: created_at
-      )
+      user.update_mails.create(title: Faker::App.name, body: Faker::Lorem.paragraph,
+                               distribution_list_ids: distribution_lists, sent: sent, sent_at: sent_at,
+                               public: [true, false].sample, created_at: created_at)
     end
   end
 

@@ -21,6 +21,7 @@
 //= require ajaxTable/ajaxTable.js
 //= require summernote
 //= require inspinia.js
+//= require Chart
 
 // FadeOut flash messages
 $(document).ready(function () {

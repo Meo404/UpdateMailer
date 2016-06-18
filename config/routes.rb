@@ -2,12 +2,18 @@ Rails.application.routes.draw do
   devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout'}
   devise_scope :user do
     authenticated :user do
-      root :to => 'update_mails#index'
+      root :to => 'statistics#index'
     end
     unauthenticated :user do
       root :to => 'devise/sessions#new', as: :unauthenticated_root
     end
   end
+
+  # Dashboard path
+  get 'dashboard' => 'statistics#index'
+
+  # Statistics data path
+  get 'statistics/chartData' => 'statistics#chart_data'
 
   # Additional user routes
   get 'edit_profile' => 'users#edit_profile'
