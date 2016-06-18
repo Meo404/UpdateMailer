@@ -1,61 +1,59 @@
 <div class="wrapper">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-content">
-                        <div>
-                            <h3 class="font-bold no-margins">
-                                Mail Views
-                            </h3>
-                            <small>Split by device type</small>
-                        </div>
-                        <div class="m-t-sm">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div>
-                                        <canvas id="viewChart" height="235"></canvas>
-                                    </div>
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div>
+                        <h3 class="font-bold no-margins">
+                            Mail Views
+                        </h3>
+                        <small>Split by device type</small>
+                    </div>
+                    <div class="m-t-sm">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div>
+                                    <canvas id="viewChart" height="235"></canvas>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <span class="label label-primary pull-right">Last month</span>
-                        <h5>Mail Stats</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <small class="stats-label">Mails sent</small>
-                                <h1><%= @data[:last_month_mails] %></h1>
-                            </div>
-                            <div class="col-md-6">
-                                <small class="stats-label">Views</small>
-                                <h1><%= @data[:last_month_views] %></h1>
-                            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <span class="label label-primary pull-right">Last month</span>
+                    <h5>Mail Stats</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <small class="stats-label">Mails sent</small>
+                            <h1><%= @data[:last_month_mails] %></h1>
+                        </div>
+                        <div class="col-md-6">
+                            <small class="stats-label">Views</small>
+                            <h1><%= @data[:last_month_views] %></h1>
                         </div>
                     </div>
                 </div>
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <span class="label label-info pull-right">All Time</span>
-                        <h5>Mail Stats</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <small class="stats-label">Mails sent</small>
-                                <h1><%= @data[:all_time_mails] %></h1>
-                            </div>
-                            <div class="col-md-6">
-                                <small class="stats-label">Views</small>
-                                <h1><%= @data[:all_time_views] %></h1>
-                            </div>
+            </div>
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <span class="label label-info pull-right">All Time</span>
+                    <h5>Mail Stats</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <small class="stats-label">Mails sent</small>
+                            <h1><%= @data[:all_time_mails] %></h1>
+                        </div>
+                        <div class="col-md-6">
+                            <small class="stats-label">Views</small>
+                            <h1><%= @data[:all_time_views] %></h1>
                         </div>
                     </div>
                 </div>
