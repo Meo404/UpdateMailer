@@ -1,43 +1,41 @@
 <tr>
     <td><%= update_mail.id %></td>
-    <td>
-        <%= link_to({ controller: 'update_mails', action: 'view', id: update_mail.id },
-                    { class: 'btn btn-xs btn-link' }, {}) do %>
-            <i class="fa fa-eye" style="margin-right: 5px"></i>
-            <%= update_mail.title %>
-        <% end %>
+    <td><%= update_mail.title %>
     </td>
-    <td>
-        <% update_mail.distribution_lists.each do |dlist| %>
-            <%= dlist.name %><br>
-        <% end %>
-    </td>
-    <td style="text-align: center"><%= update_mail.created_at.to_formatted_s(:db) %></td>
+    <td><%= update_mail_author(update_mail) %></td>
+    <td style="text-align: center"><%= update_mail.created_at.strftime('%F') %></td>
     <td style="text-align: center">
         <% if update_mail.sent %>
-            <%= update_mail.sent_at.to_formatted_s(:db) %>
+            <%= update_mail.sent_at.strftime('%F') %>
+        <% elsif update_mail.user == current_user %>
+            <%= link_to({ controller: 'update_mails', action: 'send_email', id: update_mail.id},
+                        { class: 'btn btn-danger btn-outline btn-xs', data: { confirm: 'Are you sure you want to send this email?',
+                                                                              title: 'Send now!' }}, {}) do %>
+                <i class="fa fa-paper-plane-o"></i>&nbsp;Send now
+            <% end %>
         <% else %>
-            <i class="fa fa-times text-danger center-block"></i>
+            -
         <% end %>
     </td>
-    <td style="text-align: center"><%= update_mail.update_mail_views_count %></td>
+    <td style="text-align: center"><%= view_count(update_mail) %></td>
     <td style="text-align: right">
-        <% if update_mail.user == current_user || current_user.admin? %>
-            <% unless update_mail.sent %>
-                <%= link_to({ controller: 'update_mails', action: 'send_email', id: update_mail.id},
-                            { class: 'btn btn-xs btn-outline btn-primary dim tooltip-enabled', data:
-                                    {confirm: 'Are you sure you want to send this email?',
-                                     title: 'Send Email' }}, {}) do %>
-                    <i class="fa fa-paper-plane-o"></i>
-                <% end %>
-                <%= link_to({ controller: 'update_mails', action: 'edit', id: update_mail.id },
-                            { class: 'btn btn-xs btn-primary' }, {}) do %>
-                    <i class="fa fa-edit"></i>
-                <% end %>
+        <% if update_mail.sent %>
+            <%= link_to({ controller: 'update_mails', action: 'view', id: update_mail.id },
+                        { class: 'btn btn-xs btn-primary' }, {}) do %>
+                <i class="fa fa-line-chart"></i>
+            <% end %>
+            <%= link_to({ controller: 'update_mails', action: 'view', id: update_mail.id },
+                        { class: 'btn btn-xs btn-primary' }, {}) do %>
+                <i class="fa fa-eye"></i>
+            <% end %>
+        <% elsif update_mail.user == current_user || current_user.admin? %>
+            <%= link_to({ controller: 'update_mails', action: 'edit', id: update_mail.id },
+                        { class: 'btn btn-xs btn-primary' }, {}) do %>
+                <i class="fa fa-edit"></i>
             <% end %>
             <%= link_to({ controller: 'update_mails', action: 'destroy', id: update_mail.id },
-                        { :class => 'btn btn-xs btn-danger', method: :delete,
-                         data: {confirm: "Are you sure you want to delete update mail: #{update_mail.title}?" }},
+                        { class:'btn btn-xs btn-danger', method: :delete,
+                          data: {confirm: "Are you sure you want to delete update mail: #{update_mail.title}?" }},
                         { method: :delete }) do %>
                 <i class="fa fa-trash"></i>
             <% end %>

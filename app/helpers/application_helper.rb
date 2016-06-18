@@ -14,4 +14,10 @@ module ApplicationHelper
   def update_mail_author(update_mail)
     update_mail.user.nil? ? 'Deleted User' : update_mail.user.email
   end
+
+  # Helper function to get the view count on any given update mail
+  # @return   view count of the mail. Returns a hyphen if 0
+  def view_count(update_mail)
+    update_mail.update_mail_views_count > 0 ? update_mail.update_mail_views_count : '-'
+  end
 end
