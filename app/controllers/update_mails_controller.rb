@@ -80,7 +80,7 @@ class UpdateMailsController < ApplicationController
   # if sort column param is invalid, we sort by id
   # @return   column to be used for sorting
   def sort_column
-    UpdateMail.column_names.include?(params[:sort]) ? params[:sort] : 'update_mails.id'
+    UpdateMail.column_names.include?(params[:sort]) ? params[:sort] : 'created_at'
   end
 
   def update_mail_params
