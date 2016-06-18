@@ -5,11 +5,11 @@
     <tr>
         <th>
             <%= sortable 'distribution_lists.id', 'ID'%>
-            <span class="fa fa-sort"></span>
+            <span class="fa fa-sort pull-right sort-icons"></span>
         </th>
         <th>
             <%= sortable 'name' %>
-            <span class="fa fa-sort"></span>
+            <span class="fa fa-sort pull-right sort-icons"></span>
         </th>
         <th>Emails</th>
         <th>Actions</th>
@@ -20,6 +20,6 @@
     </tbody>
 </table>
 <div>
-    <%= page_entries_info @distribution_lists, :class => 'pull-left', :model => 'distribution_list' %>
-    <%= will_paginate @distribution_lists, renderer: BootstrapPagination::Rails, :class => 'pull-right no-margin' %>
+    <%= page_entries_info @distribution_lists, class: 'pull-left', model: 'distribution_list' %>
+    <%= will_paginate @distribution_lists, renderer: BootstrapPagination::Rails, class: 'pull-right no-margin' %>
 </div>

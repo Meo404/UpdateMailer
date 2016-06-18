@@ -77,6 +77,8 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    chart-js-rails (0.1.0)
+      railties (> 3.1)
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.1)
@@ -347,6 +349,7 @@ DEPENDENCIES
   capistrano-rails-console
   capistrano-rvm (~> 0.1.1)
   capybara
+  chart-js-rails
   database_cleaner
   device_detector (= 0.8.2)
   devise

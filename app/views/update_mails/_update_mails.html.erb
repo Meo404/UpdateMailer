@@ -4,24 +4,25 @@
     <thead>
     <tr>
         <th>
-            <%= sortable 'id', 'ID'%>
-            <span class="fa fa-sort"></span>
+            <%= sortable 'id', '#'%>
+            <span class="fa fa-sort pull-right sort-icons"></span>
         </th>
         <th>
             <%= sortable 'title' %>
-            <span class="fa fa-sort"></span>
+            <span class="fa fa-sort pull-right sort-icons"></span>
         </th>
         <th>Distribution Lists</th>
         <th style="text-align: center">
             <%= sortable 'id', 'Created At' %>
-            <span class="fa fa-sort"></span>
+            <span class="fa fa-sort pull-right sort-icons"></span>
         </th>
         <th style="text-align: center">
             <%= sortable 'sent_at', 'Sent At' %>
-            <span class="fa fa-sort"></span>
+            <span class="fa fa-sort pull-right sort-icons"></span>
         </th>
         <th style="text-align: center">
             <%= sortable 'update_mail_views_count', 'View Count' %>
+            <span class="fa fa-sort pull-right sort-icons"></span>
         </th>
         <th></th>
     </tr>

@@ -36,9 +36,9 @@ class MockDataService
     end
   end
 
-  # Function to create 100 mock update mails
+  # Function to create 200 mock update mails
   def self.create_update_mails
-    (1..100).each do
+    (1..200).each do
       distribution_lists = []
       (1..rand(1..4)).each do
         distribution_lists << DistributionList.offset(rand(DistributionList.count)).first.id
@@ -46,17 +46,11 @@ class MockDataService
 
       user = User.find(User.offset(rand(User.count)).first.id)
       sent = [true, false].sample
-      created_at = Faker::Time.between(30.days.ago, 7.days.ago, :all)
+      created_at = Faker::Time.between(100.days.ago, 7.days.ago, :all)
       sent_at = sent ? Faker::Time.between(created_at, Time.now, :all) : ''
-      user.update_mails.create(
-                    title: Faker::App.name,
-                    body: Faker::Lorem.paragraph,
-                    distribution_list_ids: distribution_lists,
-                    sent: sent,
-                    sent_at: sent_at,
-                    public: [true, false].sample,
-                    created_at: created_at
-      )
+      user.update_mails.create(title: Faker::App.name, body: Faker::Lorem.paragraph,
+                               distribution_list_ids: distribution_lists, sent: sent, sent_at: sent_at,
+                               public: [true, false].sample, created_at: created_at)
     end
   end
 
@@ -72,7 +66,7 @@ class MockDataService
             ip: Faker::Internet.ip_v4_address,
             os: operating_systems.sample,
             device_type: device_types.sample,
-            created_at: Faker::Time.between(7.days.ago, Time.now, :all)
+            created_at: Faker::Time.between(update_mail.sent_at, Time.now, :all)
           }
           update_mail.update_mail_views.create(view_params)
         end

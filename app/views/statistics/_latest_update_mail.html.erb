@@ -1,0 +1,19 @@
+<tr>
+    <td><%= latest_update_mail.id %></td>
+    <td><%= latest_update_mail.title %></td>
+    <td><%= update_mail_author(latest_update_mail) %></td>
+    <td style="text-align: center">
+        <% if latest_update_mail.sent %>
+            <%= latest_update_mail.sent_at.to_formatted_s(:db) %>
+        <% else %>
+            <i class="fa fa-times text-danger center-block"></i>
+        <% end %>
+    </td>
+    <td style="text-align: center"><%= latest_update_mail.update_mail_views_count %></td>
+    <td style="text-align: right">
+        <%= link_to({ controller: 'update_mails', action: 'view', id: latest_update_mail.id },
+                    { class: 'btn btn-xs btn-primary' }) do %>
+            <i class="fa fa-eye"></i>
+        <% end %>
+    </td>
+</tr>

@@ -5,8 +5,11 @@ class UpdateMailsController < ApplicationController
   before_action :allowed_to_view, only: [:view]
 
   def index
-    @update_mails = UpdateMail.search(params[:search], current_user).order(sort_column + ' ' + sort_direction('desc'))
-                              .paginate(page: params[:page], per_page: 25)
+    self_search = !params[:scope].nil? && params[:scope].to_bool ? true : false
+    search_service = UpdateMailSearchService.new
+    @update_mails = search_service.search(params[:search], current_user, self_search)
+                                  .order('update_mails.' + sort_column + ' ' + sort_direction('desc') + ' NULLS LAST')
+                                  .paginate(page: params[:page], per_page: 25)
   end
 
   def view
@@ -79,7 +82,7 @@ class UpdateMailsController < ApplicationController
   # if sort column param is invalid, we sort by id
   # @return   column to be used for sorting
   def sort_column
-    UpdateMail.column_names.include?(params[:sort]) ? params[:sort] : 'update_mails.id'
+    UpdateMail.column_names.include?(params[:sort]) ? params[:sort] : 'created_at'
   end
 
   def update_mail_params

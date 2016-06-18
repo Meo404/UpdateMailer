@@ -1,0 +1,17 @@
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th style="text-align: center">Sent At</th>
+        <th style="text-align: center">View Count</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @latest_update_mails.each do |update_mail| %>
+        <%= render partial: 'latest_update_mail', locals: {latest_update_mail: update_mail} %>
+    <% end  %>
+    </tbody>
+</table>

@@ -9,9 +9,9 @@
         </div>
         <div class="navbar-collapse collapse" id="navbar">
             <ul class="nav navbar-nav">
-                <li>
-                    <a href="#">
-                        <i class="fa fa-tachometer"></i> Dashboard
+                <li class="<%= 'active' if controller_name == 'statistics' %>">
+                    <a href="<%= dashboard_path %>">
+                        <i class="fa fa-bar-chart"></i> Dashboard
                     </a>
                 </li>
                 <li class="<%= 'active' if controller_name == 'update_mails' %>">

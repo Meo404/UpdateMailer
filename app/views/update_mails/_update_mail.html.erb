@@ -2,7 +2,7 @@
     <td><%= update_mail.id %></td>
     <td>
         <%= link_to({ controller: 'update_mails', action: 'view', id: update_mail.id },
-                    {:class => 'btn btn-xs btn-link'}, {}) do %>
+                    { class: 'btn btn-xs btn-link' }, {}) do %>
             <i class="fa fa-eye" style="margin-right: 5px"></i>
             <%= update_mail.title %>
         <% end %>

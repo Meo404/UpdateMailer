@@ -67,14 +67,6 @@ class EmailTemplatesController < ApplicationController
 
   private
 
-  # Method to validate whether or not the request is a JSON request
-  # if it is json request then proceed
-  # else render nothing with status code 406
-  def ensure_json_request
-    return if params[:format] == 'json' || request.headers['Accept'] =~ /json/
-    render nothing: true, status: 406
-  end
-
   # Method to return the column to be used for sorting
   # if sort column param is invalid, we sort by id
   # @return   column to be used for sorting

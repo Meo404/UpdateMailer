@@ -5,7 +5,7 @@ class CreateUpdateMails < ActiveRecord::Migration
       t.text :body
       t.string :permalink
       t.boolean :sent
-      t.datetime :sent_at
+      t.datetime :sent_at, default: nil
       t.boolean :public, default: false
 
       t.timestamps null: false
