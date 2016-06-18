@@ -1,4 +1,7 @@
 class StatisticsController < ApplicationController
+  before_filter :ensure_json_request, only: [:chart_data]
+  before_action :authenticate_user!
+
   def index
     data_service = StatisticsDataService.new
     @data = data_service.period_views

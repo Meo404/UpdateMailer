@@ -10,6 +10,17 @@ class ApplicationController < ActionController::Base
     %w(asc desc).include?(params[:direction]) ? params[:direction] : default
   end
 
+  # Method to validate whether or not the request is a JSON request
+  # if it is json request then proceed
+  # else render nothing with status code 406
+  def ensure_json_request
+    return if params[:format] == 'json' || request.headers['Accept'] =~ /json/
+    render nothing: true, status: 406
+  end
+
+  # Method to check whether or not the current user has the admin role
+  # if he is admin nothing happens
+  # else he will be redirected to the root_path
   def check_admin
     redirect_to :root unless current_user && current_user.admin?
   end
