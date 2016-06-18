@@ -30,4 +30,5 @@ Rails.application.routes.draw do
   resources :update_mails
   resources :email_templates
   resources :users
+  resources :statistics
 end

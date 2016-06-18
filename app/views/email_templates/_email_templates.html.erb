@@ -19,6 +19,6 @@
     </tbody>
 </table>
 <div>
-    <%= page_entries_info @email_templates, :class => 'pull-left', :model => 'email_template' %>
-    <%= will_paginate @email_templates, renderer: BootstrapPagination::Rails, :class => 'pull-right no-margin' %>
+    <%= page_entries_info @email_templates, class: 'pull-left', model: 'email_template' %>
+    <%= will_paginate @email_templates, renderer: BootstrapPagination::Rails, class: 'pull-right no-margin' %>
 </div>

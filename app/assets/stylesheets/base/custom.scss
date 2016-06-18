@@ -27,8 +27,12 @@
   max-height: 250px;
 }
 
-// Table styles
+.top-row {
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
 
+// Table styles
 thead a:active, thead a:link, thead a:visited, a:hover {
   color: #676a6c;
 }
