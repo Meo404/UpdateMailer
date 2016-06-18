@@ -18,6 +18,9 @@ class StatisticsDataService
     end
   end
 
+  # Method to retrieve mail creations and views
+  # Periods: Last Month & All time
+  # @return   Hash containing period creations/views
   def period_views
     @data = {
       all_time_views: UpdateMailView.count,
