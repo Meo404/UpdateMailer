@@ -1,20 +1,19 @@
 <%= hidden_field_tag :direction, params[:direction] %>
 <%= hidden_field_tag :sort, params[:sort] %>
-<%= will_paginate @users, renderer: BootstrapPagination::Rails, :class => 'pull-right no-margin' %>
 <table class="table table-striped">
     <thead>
     <tr>
         <th>
             <%= sortable 'id', 'ID' %>
-            <span class="fa fa-sort"></span>
+            <span class="fa fa-sort pull-right sort-icons"></span>
         </th>
         <th>
             <%= sortable 'email', 'Email Address' %>
-            <span class="fa fa-sort"></span>
+            <span class="fa fa-sort pull-right sort-icons"></span>
         </th>
         <th>
             <%= sortable 'admin' %>
-            <span class="fa fa-sort"></span>
+            <span class="fa fa-sort pull-right sort-icons"></span>
         </th>
         <th>Actions</th>
     </tr>

@@ -26,3 +26,18 @@
 .preview_image {
   max-height: 250px;
 }
+
+// Table styles
+
+thead a:active, thead a:link, thead a:visited, a:hover {
+  color: #676a6c;
+}
+
+.fa-unsorted:before,
+.fa-sort:before {
+  color: #ddd;
+}
+
+.sort-icons {
+  margin-top: 0.2em;
+}

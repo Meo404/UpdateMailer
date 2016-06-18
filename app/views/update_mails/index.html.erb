@@ -5,18 +5,41 @@
                 <h5>Update Mails</h5>
             </div>
             <div class="ibox-content">
-                <div class="table-responsive">
+                <div class="row" style="margin-bottom: 10px">
                     <%= form_tag update_mails_path, method: 'get', id: 'search-field' do %>
-                        <div class="col-sm-4" style="padding-left: 0;padding-bottom: 5px">
-                            <%= text_field_tag :search, params[:search],
-                                               class: 'form-control input-sm pull-left',
-                                               placeholder: 'Search for update mails' %>
+                        <div class="col-sm-8 m-b-xs">
+                            <div data-toggle="buttons" class="btn-group">
+                                <div data-toggle="buttons" class="btn-group" id="self-switch">
+                                    <label class="btn btn-sm btn-white active">
+                                        <input name="scope" value="false" type="radio" class="own-mails-switch">All
+                                        Mails
+                                    </label>
+                                    <label class="btn btn-sm btn-white">
+                                        <input name="scope" value="true" type="radio" class="own-mails-switch">Own Mails
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <%= text_field_tag :search, params[:search],
+                                                   class: 'form-control input-sm',
+                                                   placeholder: 'Search for update mails' %>
+                                <span class="input-group-btn">
+                                        <button type="button" class="btn btn-sm btn-primary">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    <%= link_to({:controller => 'update_mails', :action => 'new'},
+                                                {:class => 'btn btn-sm btn-primary',
+                                                 :style => 'margin-left: 5px;'}, {}) do %>
+                                        <i class="fa fa-plus-square"></i>&nbsp;New Mail
+                                <% end %>
+                                </span>
+                            </div>
                         </div>
                     <% end %>
-                    <%= link_to({:controller => 'update_mails', :action => 'new'},
-                                {:class => 'btn btn-sm btn-primary pull-right', :style => 'color: white'}, {}) do %>
-                        <i class="fa fa-plus" style="margin-right: 5px"></i><span style="">New Update Mail</span>
-                    <% end %>
+                </div>
+                <div class="table-responsive">
                     <div id="data-table">
                         <%= render 'update_mails' %>
                     </div>

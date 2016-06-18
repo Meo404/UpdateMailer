@@ -3,27 +3,35 @@
         <div class="ibox float-e-margins main-box">
             <div class="ibox-title">
                 <h5>Users</h5>
-                <div class="ibox-tools">
-                    <%= link_to({ controller: 'users', action: 'new' }, { class: 'btn btn-sm btn-primary',
-                                                                          style: 'color: white'}, {}) do %>
-                        <i class="fa fa-plus" style="margin-right: 5px"></i><span style="">Invite New User</span>
-                    <% end %>
-                </div>
             </div>
             <div class="ibox-content">
-                <div class="table-responsive">
+                <div class="row" style="margin-bottom: 10px">
                     <%= form_tag users_path, method: 'get', id: 'search-field' do %>
-                        <div class="col-sm-4" style="padding-left: 0;">
-                            <%= text_field_tag :search, params[:search],
-                                               class: 'form-control input-sm pull-left search-field',
-                                               placeholder: 'Search for users' %>
+                        <div class="col-sm-7 m-b-xs"></div>
+                        <div class="col-sm-5">
+                            <div class="input-group">
+                                <%= text_field_tag :search, params[:search], class: 'form-control input-sm',
+                                                   placeholder: 'Search for users' %>
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-sm btn-primary">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                    <%= link_to({:controller => 'users', :action => 'new'},
+                                                {:class => 'btn btn-sm btn-primary',
+                                                 :style => 'margin-left: 5px;'}, {}) do %>
+                                        <i class="fa fa-plus-square"></i>&nbsp;New User
+                                        <% end %>
+                                </span>
+                            </div>
                         </div>
-                        <div id="data-table">
-                            <%= render 'users' %>
                         </div>
+                        <div class="table-responsive">
+                            <div id="data-table">
+                                <%= render 'users' %>
+                            </div>
                     <% end %>
-                </div>
-            </div>
+                    </div>
+                    </div>
         </div>
     </div>
 </div>

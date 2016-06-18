@@ -6,14 +6,17 @@ class UpdateMailSearchService
   # user will be returned
   # if no search param is provided and the user is an admin then all records will be returned
   # else it returns all record that are public or belong to the user
-  # @param  search  search term to find
-  # @param  user    current user executing the search
+  # @param  search    search term to find
+  # @param  user      current user executing the search
+  # @param  only_own  boolean to set if only the user onwed record shall be searched. defaults to false
   # @return search results
-  def search(search, user)
-    if search && user.admin?
+  def search(search, user, only_own = false)
+    if only_own
+      UpdateMail.where('user_id = ?', user.id)
+    elsif search && user.admin?
       admin_search(search)
     elsif search
-      user_search(search, user.id)
+      regular_search(search, user.id)
     elsif user.admin?
       UpdateMail.where(nil)
     else
@@ -29,7 +32,7 @@ class UpdateMailSearchService
                      "%#{search.downcase}%", "%#{search.downcase}%").references(:distribution_lists)
   end
 
-  def user_search(search, user_id)
+  def regular_search(search, user_id)
     records = UpdateMail.includes(:distribution_lists)
                         .where('LOWER(distribution_lists.name) LIKE ? OR LOWER(title) LIKE ?',
                                "%#{search.downcase}%", "%#{search.downcase}%").references(:distribution_lists)
