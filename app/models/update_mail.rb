@@ -6,6 +6,10 @@ class UpdateMail < ActiveRecord::Base
   # Before save actions
   before_save :sanitize_body
 
+  # Before delete actions
+  # Cleans relation to update mail views on deletion
+  before_destroy { self.update_mail_views.clear }
+
   # Validation
   validates :title, presence: true, length: { maximum: 255, minimum: 3 }, uniqueness: { case_sensitive: false }
   validates :body, presence: true
