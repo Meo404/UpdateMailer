@@ -9,8 +9,12 @@
             <i class="fa fa-times text-danger center-block"></i>
         <% end %>
     </td>
-    <td style="text-align: center"><%= latest_update_mail.update_mail_views_count %></td>
+    <td style="text-align: center"><%= view_count(latest_update_mail) %></td>
     <td style="text-align: right">
+        <%= link_to({ controller: 'update_mails', action: 'statistics', id: latest_update_mail.id },
+                    { class: 'btn btn-xs btn-primary' }) do %>
+            <i class="fa fa-line-chart"></i>
+        <% end %>
         <%= link_to({ controller: 'update_mails', action: 'view', id: latest_update_mail.id },
                     { class: 'btn btn-xs btn-primary' }) do %>
             <i class="fa fa-eye"></i>

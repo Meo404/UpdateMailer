@@ -1,0 +1,116 @@
+<%= javascript_include_tag 'mail_statistics' %>
+<div class="wrapper animated fadeIn top-row">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div>
+                        <h3 class="font-bold ml-7">
+                            Update Mail Statistics
+                        </h3>
+                    </div>
+                    <div class="m-t-sm">
+                        <div class="row">
+                            <div class="col-md-12 mt-30">
+                                <div>
+                                    <table class="table m-t-sm">
+                                        <tbody>
+                                        <h4 class="ml-7"><%= @update_mail.title %></h4>
+                                        <tr>
+                                            <td>Total Views</td>
+                                            <td><%= @update_mail.update_mail_views_count %></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Author</td>
+                                            <td><%= @update_mail.user.email %></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Created At</td>
+                                            <td><%= @update_mail.created_at %></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Send At</td>
+                                            <td><%= @update_mail.sent_at %></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div>
+                        <h3 class="font-bold no-margins">
+                            Mail Views
+                        </h3>
+                        <small>last 14 days</small>
+                    </div>
+                    <div class="m-t-sm">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div>
+                                    <canvas id="viewLineChart" height="235"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div>
+                        <h3 class="font-bold no-margins">
+                            Total Mail Views
+                        </h3>
+                        <small>Split by hour of day</small>
+                    </div>
+                    <div class="m-t-sm">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div>
+                                    <canvas id="viewBarChart" height="235"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div>
+                        <h3 class="font-bold no-margins">
+                            Total Mail Views
+                        </h3>
+                        <small>Split by device type</small>
+                    </div>
+                    <div class="m-t-sm">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div>
+                                    <canvas id="viewPieChart" height="235"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%= link_to 'Go back', :back, class: 'btn btn-primary pull-right',
+                style: 'margin-right: 10px' %>
+</div>
+
+<script>
+    var update_mail_id =<%= @update_mail.id %>;
+</script>

@@ -2,7 +2,7 @@ $(function () {
 
     // Create Charts.js chart
     var ctx = document.getElementById("viewChart").getContext("2d");
-    var chartData = getData();
+    var chartData = getChartData();
     var newChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -37,30 +37,20 @@ $(function () {
 
 });
 
-function getData() {
-    var party = [[],[],[],[]];
+function getChartData() {
+    var result = [[],[],[],[]];
     $.ajax({
         url: '/statistics/chartData',
         dataType: 'json',
         async: false, // needs to replaced soon with async call!
         success: function (data) {
             $.each(data, function() {
-                $.each(this, function(k, v) {
-                    if(k == 'date') {
-                        party[0].push(v);
-                    }
-                    else if(k == 'total_views') {
-                        party[1].push(v)
-                    }
-                    else if(k == 'mobile_views') {
-                        party[2].push(v)
-                    }
-                    else if(k == 'desktop_views') {
-                        party[3].push(v)
-                    }
-                });
+                result[0].push(this['date']);
+                result[1].push(this['viewsPerDeviceType']['totalViews']);
+                result[2].push(this['viewsPerDeviceType']['mobileViews']);
+                result[3].push(this['viewsPerDeviceType']['desktopViews']);
             });
         }
     });
-    return party
+    return result
 }

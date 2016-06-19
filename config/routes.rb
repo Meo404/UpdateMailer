@@ -14,12 +14,14 @@ Rails.application.routes.draw do
 
   # Statistics data path
   get 'statistics/chartData' => 'statistics#chart_data'
+  get 'statistics/updateMailData' => 'statistics#update_mail_data'
 
   # Additional user routes
   get 'edit_profile' => 'users#edit_profile'
   patch 'users/update_profile'
 
   # Additional update mail routes
+  get 'update_mails/statistics/:id' => 'update_mails#statistics'
   get 'update_mails/view/:id' => 'update_mails#view'
   get 'update_mails/send_email/:id' => 'update_mails#send_email'
 

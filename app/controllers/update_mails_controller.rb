@@ -1,11 +1,10 @@
 class UpdateMailsController < ApplicationController
-  helper_method :sort_direction, :sort_column
+  helper_method :sort_direction, :sort_column, :self_search
   before_action :authenticate_user!
   before_action :allowed_to_modify, only: [:edit, :update, :send_email, :destroy]
   before_action :allowed_to_view, only: [:view]
 
   def index
-    self_search = !params[:scope].nil? && params[:scope].to_bool ? true : false
     search_service = UpdateMailSearchService.new
     @update_mails = search_service.search(params[:search], current_user, self_search)
                                   .order('update_mails.' + sort_column + ' ' + sort_direction('desc') + ' NULLS LAST')
@@ -18,6 +17,10 @@ class UpdateMailsController < ApplicationController
 
   def new
     @update_mail = current_user.update_mails.build
+  end
+
+  def statistics
+    @update_mail = UpdateMail.find(params[:id])
   end
 
   def create
@@ -86,7 +89,7 @@ class UpdateMailsController < ApplicationController
   end
 
   def update_mail_params
-    params.require(:update_mail).permit(:title, :body, distribution_list_ids: [])
+    params.require(:update_mail).permit(:title, :body, :public, distribution_list_ids: [])
   end
 
   # Checks if the current user is allowed to modify an update mail
