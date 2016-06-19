@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   # Statistics data path
   get 'statistics/chartData' => 'statistics#chart_data'
+  get 'statistics/updateMailData' => 'statistics#update_mail_data'
 
   # Additional user routes
   get 'edit_profile' => 'users#edit_profile'

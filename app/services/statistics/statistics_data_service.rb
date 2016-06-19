@@ -8,13 +8,13 @@ class StatisticsDataService
     mobile_views = Hash[data.map { |h| h.values_at('date', 'mobile_views') }]
     desktop_views = Hash[data.map { |h| h.values_at('date', 'desktop_views') }]
 
-    @views_per_day = (6.days.ago.to_date.strftime('%F')..0.day.ago.to_date.strftime('%F')).map do |date|
-      {
-        date: date,
-        total_views: total_views[date] || 0,
-        mobile_views: mobile_views[date] || 0,
-        desktop_views: desktop_views[date] || 0
-      }
+    (6.days.ago.to_date.strftime('%F')..0.day.ago.to_date.strftime('%F')).map do |date|
+      {date: date,
+       viewsPerDeviceType: {
+        totalViews: total_views[date] || 0,
+        mobileViews: mobile_views[date] || 0,
+        desktopViews: desktop_views[date] || 0
+      }}
     end
   end
 

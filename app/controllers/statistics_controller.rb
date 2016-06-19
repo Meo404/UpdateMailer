@@ -1,7 +1,7 @@
 class StatisticsController < ApplicationController
   helper_method :sort_direction, :sort_column
 
-  before_filter :ensure_json_request, only: [:chart_data]
+  before_filter :ensure_json_request, only: [:chart_data, :update_mail_data]
   before_action :authenticate_user!
 
   def index
@@ -14,6 +14,12 @@ class StatisticsController < ApplicationController
                         .where('sent = true')
                         .order('update_mails.sent_at DESC')
                         .limit(10)
+  end
+
+  # Returns update mail related data as JSON
+  def update_mail_data
+    data_service = UpdateMailDataService.new(params[:id])
+    render json: data_service.data
   end
 
   # Returns chart related Data as JSON
