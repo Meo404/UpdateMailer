@@ -86,7 +86,7 @@ class UpdateMailsController < ApplicationController
   end
 
   def update_mail_params
-    params.require(:update_mail).permit(:title, :body, distribution_list_ids: [])
+    params.require(:update_mail).permit(:title, :body, :public, distribution_list_ids: [])
   end
 
   # Checks if the current user is allowed to modify an update mail
