@@ -24,4 +24,9 @@ class ApplicationController < ActionController::Base
   def check_admin
     redirect_to :root unless current_user && current_user.admin?
   end
+
+  # Method to return boolean value depending on scope param
+  def self_search
+    !params[:scope].nil? && params[:scope].to_bool ? true : false
+  end
 end

@@ -1,4 +1,5 @@
 class StatisticsController < ApplicationController
+  helper_method :self_search
   before_filter :ensure_json_request, only: [:chart_data, :update_mail_data]
   before_action :authenticate_user!
 
@@ -6,7 +7,6 @@ class StatisticsController < ApplicationController
     data_service = StatisticsDataService.new
     @data = data_service.period_views
 
-    self_search = !params[:scope].nil? && params[:scope].to_bool ? true : false
     search_service = UpdateMailSearchService.new
     @latest_update_mails = search_service.search(params[:search], current_user, self_search)
                         .where('sent = true')

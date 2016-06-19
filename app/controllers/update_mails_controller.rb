@@ -1,11 +1,10 @@
 class UpdateMailsController < ApplicationController
-  helper_method :sort_direction, :sort_column
+  helper_method :sort_direction, :sort_column, :self_search
   before_action :authenticate_user!
   before_action :allowed_to_modify, only: [:edit, :update, :send_email, :destroy]
   before_action :allowed_to_view, only: [:view]
 
   def index
-    self_search = !params[:scope].nil? && params[:scope].to_bool ? true : false
     search_service = UpdateMailSearchService.new
     @update_mails = search_service.search(params[:search], current_user, self_search)
                                   .order('update_mails.' + sort_column + ' ' + sort_direction('desc') + ' NULLS LAST')
