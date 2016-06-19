@@ -57,4 +57,8 @@ Rails.application.configure do
 
   # Add authenticity token in remote forms
   config.action_view.embed_authenticity_token_in_remote_forms = true
+
+  # Make Rails use `exceptions_app` in development
+  # Uncomment to see custom error pages in development
+  # config.consider_all_requests_local = false
 end
