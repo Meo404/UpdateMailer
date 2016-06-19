@@ -1,6 +1,4 @@
 class StatisticsController < ApplicationController
-  helper_method :sort_direction, :sort_column
-
   before_filter :ensure_json_request, only: [:chart_data, :update_mail_data]
   before_action :authenticate_user!
 
@@ -28,9 +26,4 @@ class StatisticsController < ApplicationController
     render json: data_service.chart_data
   end
 
-  private
-
-  def sort_column
-    UpdateMail.column_names.include?(params[:sort]) ? params[:sort] : 'created_at'
-  end
 end
