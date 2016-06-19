@@ -11,7 +11,7 @@
     </td>
     <td style="text-align: center"><%= view_count(latest_update_mail) %></td>
     <td style="text-align: right">
-        <%= link_to({ controller: 'update_mails', action: 'view', id: latest_update_mail.id },
+        <%= link_to({ controller: 'update_mails', action: 'statistics', id: latest_update_mail.id },
                     { class: 'btn btn-xs btn-primary' }) do %>
             <i class="fa fa-line-chart"></i>
         <% end %>

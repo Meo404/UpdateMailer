@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   patch 'users/update_profile'
 
   # Additional update mail routes
+  get 'update_mails/statistics/:id' => 'update_mails#statistics'
   get 'update_mails/view/:id' => 'update_mails#view'
   get 'update_mails/send_email/:id' => 'update_mails#send_email'
 

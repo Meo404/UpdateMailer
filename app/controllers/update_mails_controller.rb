@@ -19,6 +19,10 @@ class UpdateMailsController < ApplicationController
     @update_mail = current_user.update_mails.build
   end
 
+  def statistics
+    @update_mail = UpdateMail.find(params[:id])
+  end
+
   def create
     @update_mail = current_user.update_mails.build(update_mail_params)
     if @update_mail.save

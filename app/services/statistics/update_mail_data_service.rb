@@ -16,10 +16,10 @@ class UpdateMailDataService
     records = UpdateMailView.where('update_mail_id = ?', @update_mail_id)
     { updateMailId: @update_mail_id,
       title: mail.title,
+      author: mail.user.email,
       createdAt: mail.created_at,
       sendAt: mail.sent_at,
       totalViews: mail.update_mail_views.count,
-      viewsPerDay: (two_week_days.merge! records.group('date(created_at)').count),
       viewsPerHour: records.group_by_hour_of_day(:created_at).count,
       viewsPerOS: records.group(:os).count,
       viewsPerDeviceType: refine_device_types(records.group(:device_type).count)}

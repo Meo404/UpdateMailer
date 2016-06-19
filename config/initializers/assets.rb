@@ -14,3 +14,5 @@ Rails.application.config.assets.version = '1.0'
 %w( distribution_lists email_templates update_mails users statistics).each do |controller|
   Rails.application.config.assets.precompile += ["#{controller}.js", "#{controller}.scss"]
 end
+
+Rails.application.config.assets.precompile += %w(mail_statistics.js)

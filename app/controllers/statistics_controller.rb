@@ -23,7 +23,7 @@ class StatisticsController < ApplicationController
   # Returns chart related Data as JSON
   def chart_data
     data_service = StatisticsDataService.new
-    render json: data_service.chart_data
+    render json: data_service.chart_data(params[:id])
   end
 
 end

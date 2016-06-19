@@ -9,8 +9,8 @@
             <%= update_mail.sent_at.strftime('%F') %>
         <% elsif update_mail.user == current_user %>
             <%= link_to({ controller: 'update_mails', action: 'send_email', id: update_mail.id},
-                        { class: 'btn btn-danger btn-outline btn-xs', data: { confirm: 'Are you sure you want to send this email?',
-                                                                              title: 'Send now!' }}, {}) do %>
+                        { class: 'btn btn-danger btn-outline btn-xs',
+                          data: { confirm: 'Are you sure you want to send this email?', title: 'Send now!' }}, {}) do %>
                 <i class="fa fa-paper-plane-o"></i>&nbsp;Send now
             <% end %>
         <% else %>
@@ -20,7 +20,7 @@
     <td style="text-align: center"><%= view_count(update_mail) %></td>
     <td style="text-align: right">
         <% if update_mail.sent %>
-            <%= link_to({ controller: 'update_mails', action: 'view', id: update_mail.id },
+            <%= link_to({ controller: 'update_mails', action: 'statistics', id: update_mail.id },
                         { class: 'btn btn-xs btn-primary' }, {}) do %>
                 <i class="fa fa-line-chart"></i>
             <% end %>
