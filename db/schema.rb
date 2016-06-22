@@ -70,7 +70,6 @@ ActiveRecord::Schema.define(version: 20160616214102) do
 
   create_table "update_mail_views", force: :cascade do |t|
     t.integer  "update_mail_id"
-    t.string   "ip"
     t.string   "user_agent"
     t.string   "browser"
     t.string   "browser_version"
