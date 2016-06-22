@@ -56,14 +56,13 @@ class MockDataService
 
   # Function to create in between 1 to 200 update mail views for each update mail that has sent = true
   def self.create_views
-    device_types = %w(desktop tablet phablet smartphone)
+    device_types = %w(desktop mobile tablet other)
     operating_systems = %w(Windows Mac Android iOS)
 
     UpdateMail.find_each do |update_mail|
       if update_mail.sent
         rand(1..200).times do
           view_params = {
-            ip: Faker::Internet.ip_v4_address,
             os: operating_systems.sample,
             device_type: device_types.sample,
             created_at: Faker::Time.between(update_mail.sent_at, Time.now, :all)

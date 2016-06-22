@@ -22,17 +22,10 @@ class UpdateMailDataService
       totalViews: mail.update_mail_views.count,
       viewsPerHour: records.group_by_hour_of_day(:created_at).count,
       viewsPerOS: records.group(:os).count,
-      viewsPerDeviceType: refine_device_types(records.group(:device_type).count)}
+      viewsPerDeviceType: records.group(:device_type).count}
   end
 
   private
-
-  # Combines smartphone, tablet and phablet views into one category named 'mobile'
-  # @return  refined views per device type
-  def refine_device_types(result)
-    result.merge!(mobile: result.values_at('smartphone', 'tablet', 'phablet').sum)
-          .except!('smartphone', 'tablet', 'phablet')
-  end
 
   # Returns all dates within the last 14 days
   # @return   days
