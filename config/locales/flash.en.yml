@@ -19,6 +19,9 @@ en:
         success: "Update Mail \"%{title}\" updated successfully!"
       destroy:
         success: "Update Mail \"%{title}\" deleted!"
+      send_email:
+        success: "Update Mail \"%{title}\" has been sent successfully!"
+        error: "There was an error sending the update mail!"
     email_templates:
       create:
         success: "Email Template \"%{name}\" created successfully!"
