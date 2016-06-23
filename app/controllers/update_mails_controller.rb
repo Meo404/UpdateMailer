@@ -3,6 +3,7 @@ class UpdateMailsController < ApplicationController
   before_action :authenticate_user!
   before_action :allowed_to_modify, only: [:edit, :update, :send_email, :destroy]
   before_action :allowed_to_view, only: [:view]
+  before_action :email_send, only: [:statistics]
 
   def index
     search_service = UpdateMailSearchService.new
@@ -32,7 +33,6 @@ class UpdateMailsController < ApplicationController
       respond_to do |format|
         format.js {
           flash!(error: @update_mail.errors.full_messages.join('<br/>').html_safe)
-          render js: "window.location = '#{new_update_mail_path}'"
         }
       end
     end
@@ -51,7 +51,6 @@ class UpdateMailsController < ApplicationController
       respond_to do |format|
         format.js {
           flash!(error: @update_mail.errors.full_messages.join('<br/>').html_safe)
-          render js: "window.location = '#{edit_update_mail_path(@update_mail)}'"
         }
       end
     end
@@ -109,6 +108,14 @@ class UpdateMailsController < ApplicationController
     @update_mail = UpdateMail.find(params[:id])
     if @update_mail.public == false && !(@update_mail.user_id == current_user.id || current_user.admin?)
       flash!(error: 'Action not allowed!')
+      redirect_to update_mails_path
+    end
+  end
+
+  def email_send
+    @update_mail = UpdateMail.find(params[:id])
+    unless @update_mail.sent
+      flash!(error: 'Update Mail has not been send yet! Statistics are not available.')
       redirect_to update_mails_path
     end
   end
