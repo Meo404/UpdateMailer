@@ -22,7 +22,6 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'gaffe'
-gem 'puma'
 group :development, :test do
   gem 'byebug'
 end
