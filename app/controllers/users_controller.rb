@@ -14,13 +14,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if User.invite!(email: @user.email, admin: @user.admin)
-      flash!(:success, locals: { email: @user.email })
-      redirect_to users_path
-    else
-      flash_now!(error: @user.errors.full_messages[0])
-      render('new')
-    end
+    flash_now!(error: "Inviting users is disabled on the demo version")
+    render('new')
   end
 
   def edit
@@ -29,13 +24,9 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(user_update_params)
-      flash!(:success, locals: { email: @user.email })
-      redirect_to users_path
-    else
-      flash_now!(error: @user.errors.full_messages[0])
-      render('edit')
-    end
+    flash_now!(error: "Updating users is disabled on the demo version")
+
+    render('edit')
   end
 
   def edit_profile
@@ -44,20 +35,12 @@ class UsersController < ApplicationController
 
   def update_profile
     @user = current_user
-    if @user.update_with_password(user_update_password_params)
-      flash!(:success)
-      sign_in @user, bypass: true
-      redirect_to root_path
-    else
-      flash_now!(error: @user.errors.full_messages[0])
-      render('edit_profile')
-    end
+    flash_now!(error: "Updating users is disabled on the demo version")
+    render('edit_profile')
   end
 
   def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-    flash!(:success, locals: { email: @user.email })
+    flash!(error: "Deleting users is disabled on the demo version")
     redirect_to users_path
   end
 
