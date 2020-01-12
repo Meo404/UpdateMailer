@@ -68,14 +68,11 @@ class UpdateMailsController < ApplicationController
 
   def send_email
     @update_mail = UpdateMail.find(params[:id])
-    if UpdateMailMailer.send_mail(@update_mail).deliver
-      flash!(:success, locals: { title: @update_mail.title })
-      @update_mail.update_attributes(sent: true, sent_at: Time.now)
-      redirect_to update_mails_path
-    else
-      flash_now!(:error)
-      render('index')
-    end
+    flash!(:success, locals: { title: @update_mail.title })
+    flash!(warning: "Email won't be send out on the demo version!")
+    @update_mail.update_attributes(sent: true, sent_at: Time.now)
+
+    redirect_to update_mails_path
   end
 
   private
