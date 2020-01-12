@@ -9,6 +9,12 @@ class MockDataService
     create_views
   end
 
+  # Function used to create additional mock emails + views for demo purposes
+  def self.create_additional_data
+    create_update_mails
+    create_views
+  end
+
   # Function to create 100 mock users
   def self.create_users
     (1..250).each do
