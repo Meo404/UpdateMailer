@@ -10,14 +10,15 @@ class StatisticsDataService
     tablet_views = Hash[data.map { |h| h.values_at('date', 'tablet_views') }]
     other_views = Hash[data.map { |h| h.values_at('date', 'other_views') }]
 
-    (13.days.ago.to_date.strftime('%F')..0.day.ago.to_date.strftime('%F')).map do |date|
-      {date: date,
+    (13.days.ago.to_date..0.day.ago.to_date).map do |date|
+      chart_date = date.strftime('%F')
+      {date: chart_date,
        viewsPerDeviceType: {
-        totalViews: total_views[date] || 0,
-        desktopViews: desktop_views[date] || 0,
-        mobileViews: mobile_views[date] || 0,
-        tabletViews: tablet_views[date] || 0,
-        otherViews: other_views[date] || 0,
+        totalViews: total_views[chart_date] || 0,
+        desktopViews: desktop_views[chart_date] || 0,
+        mobileViews: mobile_views[chart_date] || 0,
+        tabletViews: tablet_views[chart_date] || 0,
+        otherViews: other_views[chart_date] || 0,
       }}
     end
   end
