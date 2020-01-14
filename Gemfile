@@ -22,6 +22,11 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'gaffe'
+gem 'faker'
+gem 'devise'
+gem 'devise_invitable'
+gem 'figaro'
+gem 'pg'
 
 group :development, :test do
   gem 'byebug'
@@ -30,10 +35,7 @@ group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
 end
-gem 'devise'
-gem 'devise_invitable'
-gem 'figaro'
-gem 'pg'
+
 group :development do
   gem 'better_errors'
   gem 'foreman'
@@ -50,7 +52,6 @@ group :development do
 end
 group :development, :test do
   gem 'factory_girl_rails'
-  gem 'faker'
   gem 'rspec-rails'
   gem 'rubocop'
 end
